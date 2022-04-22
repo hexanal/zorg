@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ meta.lang }}">
+<head>
+  {{> head-meta }}
+</head>
+
+<body data-barba="wrapper" id="✷">
+
+  <main class="page" data-barba="container" data-component="transitions,scroll">
+    <div class="page__contents" data-barba="inside">
+
+{{> @partial-block }}
+
+    </div>
+  </main>
+
+  <script src="/assets/js/kuuma.mjs" type="module"></script>
+
+</body>
+</html>

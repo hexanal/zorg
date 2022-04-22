@@ -1,0 +1,25 @@
+# filesystem stuff
+.DS_Store
+.env
+
+# node stuff
+node_modules/
+npm-debug.log
+
+# generated stuff
+/public
+*.css.map
+*.js.map
+
+# database things
+/media
+/routes
+/content
+comments.db
+# generated exports
+/exports
+
+# backup doodads
+*.bak.*
+*.bak
+.bak

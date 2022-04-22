@@ -1,0 +1,14 @@
+// @todo not sure it's cool to stick that in there, but hey... it'll do for now
+
+
+[data-event="SHOW_BOX_HELP"] {
+  &::after {
+    content: ' ︎▵';
+  }
+}
+
+[data-event="SET_THEME"] {
+  &::after {
+    content: ' ✺';
+  }
+}

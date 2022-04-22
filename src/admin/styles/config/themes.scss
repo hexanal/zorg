@@ -1,0 +1,110 @@
+html { --icon-filter: none; }
+
+// june colorscheme originally created using: https://coolors.co
+html[data-theme="june"] {
+  --color-bg: #f9eaea; // Linen
+  --color-primary: #a46bea; // Rich Lavender
+  --color-active: #ff6c23; // Pumpkin
+  --color-secondary: #ea8fcd; // Kobi
+  --color-subdued: #65b25e; // Bud Green
+  --color-extra: #ffdd21; // Banana Yellow
+}
+
+html[data-theme="nova"] {
+  --color-bg: #fff7e7;
+  --color-primary: #8930d3;
+  --color-secondary: #e4006b;
+  --color-active: #ff503e;
+  --color-subdued: #fc9a00;
+  --color-extra: #ffef00;
+}
+
+html[data-theme="mini"] {
+  --color-bg: #fff;
+  --color-primary: #000;
+  --color-active: #000;
+  --color-secondary: #00f;
+  --color-subdued: #4A00AA;
+  --color-extra: #0f0;
+  --icon-filter: grayscale(1) brightness(0.75) contrast(3.5);
+}
+
+html[data-theme="january"] {
+  --color-bg: #fafbff;
+  --color-primary: #3e3939;
+  --color-active: #444040;
+  --color-secondary: #00789d;
+  --color-subdued: #1c3e62;
+  --color-extra: #d9d9d9;
+}
+
+html[data-theme="camper-van"] {
+  --color-bg: #f7f4ff;
+  --color-primary: #000516;
+  --color-secondary: #e55255;
+  --color-active: #e89500;
+  --color-subdued: #514572;
+  --color-extra: #d4e8ea;
+}
+
+/* Dark Themes */
+
+html[data-theme="june-night"] {
+  --color-bg: #1f1c24;
+  --color-primary: #fff;
+  --color-active: #ffb960;
+  --color-secondary: #61e8a2;
+  --color-subdued: #fb5a78;
+  --color-extra: #483e8a;
+  --icon-filter: hue-rotate(-50deg);
+}
+
+html[data-theme="mini-dark"] {
+  --color-bg: #000;
+  --color-primary: #fff;
+  --color-active: #fff;
+  --color-secondary: #0f0;
+  --color-subdued: #ff57ff;
+  --color-extra: #00f;
+
+  --icon-filter: grayscale(1) brightness(0.75) contrast(3.5);
+}
+
+html[data-theme="hypernova"] {
+  --color-bg: #191221;
+  --color-primary: #ffbae7;
+  --color-active: #fd526a;
+  --color-secondary: #9052ff;
+  --color-subdued: #eb9094;
+  --color-extra: #41305f;
+}
+
+html[data-theme="the-greys"] {
+  --color-bg: #262125;
+  --color-primary: #f7f7f7;
+  --color-active: #b9b9b9;
+  --color-secondary: #ccc;
+  --color-subdued: #dbdbdb;
+  --color-extra: #444;
+  --icon-filter: invert() grayscale(1) brightness(3) contrast(3);
+}
+
+html[data-theme="bioluminesce"] {
+  --color-bg: #262125;
+  --color-primary: #ebdbff;
+  --color-active: #81ffac;
+  --color-secondary: #ddeee4;
+  --color-subdued: #838db3;
+  --color-extra: #4f496a;
+  --icon-filter: saturate(0.25) brightness(1.5);
+}
+
+html[data-theme="dim"] {
+  --color-bg: #000;
+  --color-primary: #5e5e5e;
+  --color-active: #575757;
+  --color-secondary: #656565;
+  --color-subdued: #6c6c6c;
+  --color-extra: #2a2a2a;
+  --icon-filter: saturate(0) brightness(0.5);
+}

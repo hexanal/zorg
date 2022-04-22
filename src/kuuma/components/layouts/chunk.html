@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
+  
+  <title>{{title}}</title>
+  
+  <meta name="description" content="{{ description }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+</head>
+
+<body data-barba="wrapper" id="✷">
+
+  <main class="page" data-barba="container" data-component="transitions,scroll">
+    <div class="page__contents" data-barba="inside">
+
+{{> @partial-block }}
+
+    </div>
+  </main>
+
+  <script src="/assets/js/kuuma.mjs" type="module"></script>
+
+</body>
+</html>

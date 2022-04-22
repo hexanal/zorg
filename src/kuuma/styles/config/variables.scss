@@ -1,0 +1,37 @@
+:root {
+  --color-bg: #f9eaea; // Linen
+  --color-primary: #a46bea; // Rich Lavender
+  --color-active: #ff6c23; // Pumpkin
+  --color-secondary: #ea8fcd; // Kobi
+  --color-subdued: #65b25e; // Bud Green
+  --color-extra: #ffdd21; // Banana Yellow
+
+  --color: var(--color-primary); // setting default color var
+  --background-color: var(--color-bg); // setting default color var
+
+  // hover states, etc.
+  --color-hover: var(--color-bg);
+  --color-focus: var(--color-secondary);
+
+  --background-color-hover: var(--color-secondary);
+  --background-color-focus: var(--color-secondary);
+
+  // focus states, etc.
+
+  --font: 'Fantasque Sans Mono', Courier, monospace;
+
+  --site-width: 40rem;
+
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.9rem;
+  --font-size: 1rem;
+  --font-size-xl: 1.25rem;
+  --font-size-xxl: 1.5rem;
+  --font-size-huge: 6rem;
+
+  --padding: 0.25rem;
+
+  --spacing: 1rem;
+  --spacing-2: 2rem;
+  --spacing-3: 3rem;
+}
