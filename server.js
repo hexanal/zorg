@@ -37,10 +37,11 @@ app.use(function(req, res) {
 })
 
 app.listen(app.get('port'), () => {
-  const { build, watch } = zorg
+  zorg.build()
 
-  build()
-  if (app.get('env') === 'development') watch()
+  if (app.get('env') === 'development') {
+    zorg.watch()
+  }
 
   log(`env: ${app.get('env')}`, { critical: true })
   log(`url: http://${app.get('host')}:${app.get('port')}`, { critical: true })

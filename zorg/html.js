@@ -1,43 +1,30 @@
 const glob = require('glob')
 const log = require('./lib/log')
-const builder = require('./lib/builder')
 const watcher = require('./lib/watcher')
 
-// Adapters are functions that go through the content to "process" it
 const adapters = [
-  // require('./adapters/default-meta'),
-  require('./adapters/json'),
-
-  // require('./adapters/page-meta'),
-
-  // require('./adapters/relationship'), // determines the relationship with other pages (i.e. is it a parent page?, how deep in the hierarchy? does it have children pages? is it related in any other way to other pages?)
-  // require('./adapters/link-checker'), // checks whether internal links are resolvable when checking against the actual sitemap
-  // require('./adapters/export-to-json'),
-
-  // for any type
-  // require('./adapters/shortcodes'),
-  // require('./adapters/modules'),
-  // require('./adapters/markdown'),
-  // require('./adapters/aliases'),
-  // require('./adapters/sitemap-xml'),
+  require('./adapters/input/input-json'), // first, parse JSON files
+  // -> here... anything we wanna do to *massage* the data
+  require('./adapters/output/output-to-html'), // output all that to HTML
 ]
 
-const build = website => {
+const build = config => {
   const start = Date.now() // start timer
-  const items = glob.sync( website.contentSrc, {}) // get the items @todo: make this kind of customizable, like for instance provide any source for the content
-  const processed = adapters.reduce( (acc, fn) => fn(acc, website), items)
-  const markup = builder(processed, website) // HTML output; also uses the website object for access to the configuration
+  const items = glob.sync( config.html.contentSrc, {}) // get the items @todo: make this kind of customizable, like for instance provide any source for the content
+  // const processed = items.map(adapters.reduce( (acc, fn) => fn(acc, config), items)
+  const processed = items.map( item => adapters.reduce( (acc, fn) => fn(acc, config), item) )
   log(`number of items found: ${items.length}`)
+  log(`number of items after processing: ${processed.length}`)
   const time = Date.now() - start // time diff
-  log(`build html for website [${website.name}] ~~ ${time}ms`)
+  log(`build html for website [${config.name}] ~~ ${time}ms`)
 
-  return { markup, time }
+  return Promise.resolve();
 }
 
-const watch = website => watcher({
-  glob: website.watchFiles,
+const watch = config => watcher({
+  glob: config.html.watch,
   type: 'html',
-  callback: build
+  callback: () => build(config)
 })
 
 module.exports = { build, watch }

@@ -53,7 +53,7 @@ const watch = website => {
   return watcher({
     glob,
     type: 'assets',
-    callback: build
+    callback: () => build(website)
   })
 }
 

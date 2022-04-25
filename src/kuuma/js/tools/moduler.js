@@ -27,7 +27,7 @@ const moduler = {
       .querySelectorAll('[data-child]')
       .forEach( child => children[ child.dataset.child ] = child )
 
-    import(`../components/${ moduleId }.js`)
+    import(`../../components/${ moduleId }.js`)
       .then( m => {
         m.default({ element, children })
       })

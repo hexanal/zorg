@@ -37,10 +37,10 @@ const build = website => {
     })
 }
 
-const watch = ({ sass:watch }) => watcher({
-  glob: watch,
+const watch = website => watcher({
+  glob: website.styles.watch,
   type: 'sass',
-  callback: build
+  callback: () => build(website)
 })
 
 module.exports = { build, watch }

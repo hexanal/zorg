@@ -7,19 +7,17 @@ module.exports  = {
             locale: 'en',
             name: 'kuumakesa.com/',
             root: './public',
-            contentSrc: './routes/**/*.json',
             // loop through `assets`, which can be styles, html, ... along with processor (html, styles/sass, copy)
             // @todo -> this can be the `html` processor;  components, watching files, etc...
-            componentsDir: './src/kuuma/components',
-            templatesDir: './src/kuuma/components/templates/',
-            watchFiles: [
-                './src/kuuma/components/**/*.html', // the HTML components
-                './routes/**/*.md', // the markdown content files
-                './routes/**/*.json' // the JSON content objects (TODO: soon to be *generated* by another interface, the Zorg GUI)
-            ],
+            html: {
+                watch: ['./content/**/*.json', './src/kuuma/components/**/*.html', './src/kuuma/components/**/*.js'],
+                contentSrc: './content/**/*.json',
+                componentsDir: './src/kuuma/components',
+                templatesDir: './src/kuuma/components/templates/',
+            },
             styles: {
-                watch: [ './src/kuuma/**/*.scss' ], // absolutely anywhere there's Sass
-                src: './src/kuuma/styles/kuuma.scss',
+                watch: ['./src/kuuma/assets/styles/**/*.scss'], // absolutely anywhere there's Sass
+                src: './src/kuuma/assets/styles/kuuma.scss',
                 out: './public',
                 dest: './public',
                 filename: 'kuuma.css'
@@ -36,13 +34,18 @@ module.exports  = {
                     dest: './public/manifest.webmanifest',
                 },
                 {
+                    id: 'robots',
+                    src: './src/kuuma/robots.txt',
+                    dest: './public/robots.txt',
+                },
+                {
                     id: 'images',
-                    src: './src/kuuma/images',
+                    src: './src/kuuma/assets/images',
                     dest: './public/assets/images',
                 },
                 {
                     id: 'fonts',
-                    src: './src/kuuma/fonts',
+                    src: './src/kuuma/assets/fonts',
                     dest: './public/assets/fonts'
                 },
             ]
