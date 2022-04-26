@@ -1,26 +1,28 @@
 import React from 'react';
 
-export default function list(props) {
+export default function List(props) {
     const { body = [] } = props || {};
     if (body.length === 0) return false;
 
-    return (
-        <ul>
-            {body.map( link => {
-                const {
-                    href = null,
-                    label = 'Click',
-                } = link || {};
-                if (!href) return false;
+    return React.createElement(
+        'ul',
+        null,
+        body.map( link => {
+            const {
+                href = null,
+                label = 'Click',
+            } = link || {};
+            if (!href) return false;
 
-                return (
-                    <li key={href}>
-                        <a href={href}>
-                            {label}
-                        </a>
-                    </li>
-                );
-            })}
-        </ul>
+            return React.createElement(
+                'li',
+                { key: href },
+                React.createElement(
+                    'a',
+                    { href },
+                    label
+                )
+            );
+        })
     );
 }

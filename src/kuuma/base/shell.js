@@ -1,9 +1,10 @@
-export default function shell(html, props, config) {
+// @todo this is related to "server-side" stuff... maybe relocate it
+export default function shell(html, item, config) {
     const {
         lang = config.lang,
         title = config.title,
         description = config.description,
-    } = props || {};
+    } = item || {};
 
     return `
 <!doctype html>
@@ -22,8 +23,11 @@ export default function shell(html, props, config) {
 </head>
 <body>
 
-${html}
+<div id="kuuma">${html}</div>
 
+<script type="text/javascript">
+const __ITEM__ = ${JSON.stringify(item)};
+</script>
 <script src="/assets/js/kuuma.js" type="module"></script>
 </body>
 </html>

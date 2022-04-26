@@ -19,8 +19,8 @@ export default {
     },
     chunks: {
         watch: ['./src/kuuma/components/**/*.js'],
-        src: './src/kuuma/components/index.js',
-        dest: './zorg/_generated/chunks.js',
+        src: './src/kuuma/kuuma.server.js',
+        dest: './zorg/_generated/kuuma.server.js',
     },
     html: {
         watch: [

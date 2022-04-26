@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function h1(props) {
+export default function H2(props) {
     const { body = null } = props || {};
     if (!body) return false;
 
-    return (
-        <h2>
-            {body}
-        </h2>
+    return React.createElement(
+        'h2',
+        null,
+        body
     );
 }

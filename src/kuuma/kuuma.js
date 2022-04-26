@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDom from 'react'
+import * as ReactDOM from 'react-dom';
+import renderChunks from './base/render-chunks.js';
 
-const root = ReactDOM.createRoot( document.querySelector('#kuuma') );
+const container = document.getElementById('kuuma');
+const Root = renderChunks([__ITEM__]);
 
-root.render( /* HEHEHEHEHERE */ );
-
+ReactDOM.hydrate(Root, container);

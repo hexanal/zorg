@@ -1,12 +1,19 @@
-import allChunks from '../components/index.js';
+import React from 'react';
+import getComponentByChunkType from './get-component-by-chunk-type.js';
 
 export default function renderChunks(chunks) {
     return chunks.map( chunk => {
         const { id = ''} = chunk;
-        const Component = allChunks[chunk.component];
+        const Component = getComponentByChunkType(chunk.component);
+        if (!Component) {
+            console.error(`No component was wound for '${chunk.component}'`);
+            return false;
+        }
 
-        return (
-            <Component key={id} {...chunk} />
+        return React.createElement(
+            Component,
+            { key: id, ...chunk },
+            null
         );
     });
 }

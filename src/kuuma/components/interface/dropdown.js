@@ -1,34 +1,23 @@
 import React from 'react';
-import Button from '../content/button';
-import Shortcut from '../content/shortcut';
+import Button from '../content/Button.js';
+import Shortcut from '../content/Shortcut.js';
 
-export default function dropdown(props) {
+export default function Dropdown(props) {
     const {
         symbol = null,
         label = null,
         shortcut = null,
-        options = []
+        // options = []
     } = props || {};
 
-    return (
-        <div
-            class="dropdown"
-        >
-            {symbol ? <Symbol name={symbol} /> : false}
-
-            <Button {...link} />
-
-            {label
-                ? (
-                    <span class="dropdown__label">
-                        {label}
-                    </span>
-                ): false}
-
-            {shortcut
-                ? (
-                    <Shortcut {...shortcut} />
-                ) : false}
-        </div>
+    return React.createElement(
+        'div',
+        { className: 'dropdown' },
+        [
+            symbol && React.createElement(Symbol, { name: symbol }, null),
+            React.createElement(Button, {...link}, null),
+            label && React.createElement('span', { className: 'dropdown__label', }, label),
+            shortcut && React.createElement(Shortcut, { ...shortcut }, label),
+        ]
     );
 }

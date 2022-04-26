@@ -9,8 +9,8 @@ export function run(config) {
 
   return esbuild.build({
     entryPoints: glob.sync(src, {}),
-    inject: ['./zorg/lib/react-shim.js'],
     bundle: true,
+    format: 'esm',
     outdir: dest,
   });
 }

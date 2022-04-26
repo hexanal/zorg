@@ -4,7 +4,6 @@ import express from 'express';
 import fs from 'fs';
 import lusca from 'lusca';
 import morgan from 'morgan';
-import path from 'path';
 import zorg from './zorg/zorg.js';
 import log from './zorg/lib/log.js';
 import config from './src/kuuma/kuuma.config.js';

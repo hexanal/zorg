@@ -1,11 +1,27 @@
+import React from 'react';
 import renderChunks from '../../base/render-chunks.js';
 
-export default function Default(data, config) {
-    const { body = [] } = data || {};
+export default function Default(props) {
+    const { body = [] } = props || {};
 
-    return (
-        <div className="default-template">
-            {renderChunks(body)}
-        </div> 
+    function onClick(e) {
+        console.log('hey hey hey hey hey');
+    }
+
+    return React.createElement(
+        'div',
+        { className: 'default-template' },
+        [
+            React.createElement(
+                'button',
+                {
+                    className: 'button',
+                    type: 'button',
+                    onClick
+                },
+                'WOAH!'
+            ),
+            renderChunks(body)
+        ]
     );
 }

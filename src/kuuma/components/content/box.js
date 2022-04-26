@@ -1,11 +1,8 @@
+import React from 'react';
 import renderChunks from '../../base/render-chunks.js';
 
-export default function box(data) {
-    const { body = [] } = data || {};
+export default function Box(props) {
+    const { body = [] } = props || {};
 
-    return (
-        <div className="box">
-            {renderChunks(body)}
-        </div> 
-    );
+    return React.createElement('div', { className: 'box' }, renderChunks(body));
 }

@@ -1,12 +1,12 @@
 import React from 'react';
 
-export default function nav(props) {
+export default function Nav(props) {
     const { body = null } = props || {};
     if (!body) return false;
 
-    return (
-        <nav>
-            {body}
-        </nav>
+    return React.createElement(
+        'nav',
+        null,
+        body
     );
 }
