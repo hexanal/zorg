@@ -1,7 +1,14 @@
 import chokidar from 'chokidar';
 import log from './log.js';
 
-export default function watcher({ glob, type, callback }) {
+// @todo
+// make tasks much easier to create with
+// 'auto-watch'
+// dynamic *task* like tasks(['app', 'html', 'assets', 'chunks', 'styles'])
+// auto import, or tasks({app, html, assets, chunks, styles})
+// from config
+
+function watcher({ glob, type, callback }) {
   const watched = chokidar.watch(glob, {
     ignored: /(^|[\/\\])\../, // ignore dotfiles
     persistent: true
@@ -15,3 +22,4 @@ export default function watcher({ glob, type, callback }) {
       callback()
     })
 }
+

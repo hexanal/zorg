@@ -8,6 +8,7 @@ npm-debug.log
 
 # generated stuff
 /public
+_generated
 *.css.map
 *.js.map
 

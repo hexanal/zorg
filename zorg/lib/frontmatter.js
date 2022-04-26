@@ -1,3 +1,4 @@
+// @todo let's review this...
 var parser = require('js-yaml')
 var optionalByteOrderMark = '\\ufeff?'
 var platform = typeof process !== 'undefined' ? process.platform : ''
@@ -12,20 +13,6 @@ var pattern = '^(' +
 // NOTE: If this pattern uses the 'g' flag the `regex` variable definition will
 // need to be moved down into the functions that use it.
 var regex = new RegExp(pattern, 'm')
-
-module.exports = extractor
-module.exports.test = test
-
-function extractor (string) {
-  string = string || ''
-
-  var lines = string.split(/(\r?\n)/)
-  if (lines[0] && /= yaml =|---/.test(lines[0])) {
-    return parse(string)
-  } else {
-    return { attributes: {}, body: string }
-  }
-}
 
 function parse (string) {
   var match = regex.exec(string)
@@ -44,8 +31,13 @@ function parse (string) {
   return { attributes: attributes, body: body, frontmatter: yaml }
 }
 
-function test (string) {
+export default function frontmatter(string) {
   string = string || ''
 
-  return regex.test(string)
+  var lines = string.split(/(\r?\n)/)
+  if (lines[0] && /= yaml =|---/.test(lines[0])) {
+    return parse(string)
+  } else {
+    return { attributes: {}, body: string }
+  }
 }

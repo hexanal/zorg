@@ -1,7 +1,7 @@
-const fs = require('fs')
+import fs from 'fs';
 
 // TODO make it sturdy, catch errors, etc.
-const createDir = function(dir) {
+export const createDir = function(dir) {
   return new Promise((resolve, reject) => {
     fs.mkdir(dir, { recursive: true }, (err) => {
       if (err) reject(err)
@@ -10,7 +10,7 @@ const createDir = function(dir) {
   })
 }
 
-const writeFile = function(filePath, contents) {
+export const writeFile = function(filePath, contents) {
   return new Promise((resolve, reject) => {
     fs.writeFile(filePath, contents, (err) => {
       if (err) reject(err)
@@ -19,13 +19,7 @@ const writeFile = function(filePath, contents) {
   })
 }
 
-const write = function(destination, fileName, contents, verbose = false ) {
+export const write = function(destination, fileName, contents, verbose = false ) {
   return createDir( destination )
-    .then(() => writeFile(`${destination}/${fileName}`, contents) )
-}
-
-module.exports = {
-  createDir,
-  writeFile,
-  write
+    .then(() => writeFile(`${destination}/${fileName}`, contents) );
 }

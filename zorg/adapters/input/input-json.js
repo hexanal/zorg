@@ -1,16 +1,16 @@
-const fs = require('fs')
+import fs from 'fs';
 
-module.exports = function(item, config ) {
-  const file = fs.readFileSync(item, 'utf8')
-  const contents = file.toString()
-  let json = {}
+export default function inputJson(item, config ) {
+  const file = fs.readFileSync(item, 'utf8');
+  const contents = file.toString();
+  let json = {};
 
   try {
-    json = JSON.parse(contents)
+    json = JSON.parse(contents);
   } catch(error) {
-    console.error(`error while parsing json file '${item}'`)
-    throw err
+    console.error(`error while parsing json file '${item}'`);
+    throw err;
   }
 
-  return json
+  return json;
 }

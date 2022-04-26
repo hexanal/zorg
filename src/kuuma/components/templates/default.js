@@ -1,10 +1,10 @@
 import renderChunks from '../../base/render-chunks.js';
 
-export default function box(data) {
+export default function Default(data, config) {
     const { body = [] } = data || {};
 
     return (
-        <div className="box">
+        <div className="default-template">
             {renderChunks(body)}
         </div> 
     );
