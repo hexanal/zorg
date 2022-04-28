@@ -1,13 +1,13 @@
 export default {
-    name: 'kuumakesa.com/',
-    title: 'Kuuma Kesä',
-    description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.",
-    root: './public',
-    baseURL: '/',
-    baseDomain: 'https://kuumakesa.com',
-    locale: 'en',
+    name: 'kuumakesa.com/', // a name to identify this website
+    title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
+    description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
+    root: './public', // where to build the static website on the server
+    baseURL: '/', // URLs for this website start from this path
+    // baseDomain: 'https://kuumakesa.com', // base production domain @todo maybe not useful
+    locale: 'en', // the website's locale
 
-    debug: false,
+    debug: false, // activate debugging for this website (more logging, etc.)
 
     // @todo -> this can be the `html` processor;  components, watching files, etc...
     // loop through `assets`, which can be styles, html, ... along with processor (html, styles/sass, copy)

@@ -6,18 +6,6 @@ import watcher from '../lib/watcher.js';
 export function run(config) {
   const { styles = null } = config;
   const { src = null, dest = null, filename = null } = styles || {};
-  // if (!src) {
-  //   log(`error: missing 'src' configuration key in the 'styles' processor`); // @todo use schema validator
-  //   return;
-  // }
-  // if (!dest) {
-  //   log(`error: missing 'dest' configuration key in the 'styles' processor`); // @todo
-  //   return;
-  // }
-  // if (!filename) {
-  //   log(`error: missing 'filename' configuration key in the 'styles' processor`); // @todo
-  //   return;
-  // }
   const compiledCSS = sass.renderSync({
     file: src,
     outputStyle: 'compressed',
@@ -36,7 +24,7 @@ export function run(config) {
 export function watch(config) {
   return watcher({
     glob: config.styles.watch,
-    type: 'sass',
+    type: 'styles',
     callback: () => run(config)
   });
 }

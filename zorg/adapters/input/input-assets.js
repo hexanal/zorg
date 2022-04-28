@@ -1,5 +1,5 @@
 // @todo! 
-export default function inputJson(item) {
+export default function inputAssets(item) {
   const file = fs.readFileSync(item, 'utf8');
   const contents = file.toString();
   let json = {};

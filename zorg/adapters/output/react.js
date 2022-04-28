@@ -1,7 +1,7 @@
 import * as ReactDOMServer from 'react-dom/server.js';
 import log from '../../lib/log.js';
-import shell from '../../../src/kuuma/app/Shell.js';
-import renderChunk from '../../../src/kuuma/app/chunky/renderChunk.js';
+import shell from '../../../src/kuuma/app/shell.js';
+import renderChunk from '../../../src/kuuma/chunky/renderChunk.js';
 import { write } from '../../lib/files.js';
 
 export default function outputToReact( item, config ) {
@@ -16,7 +16,3 @@ export default function outputToReact( item, config ) {
   
   return write(destination, 'index.html', html, config);
 }
-
-// @todo
-// log(`[error] '${err}'`, { critical: CONFIG?.debug });
-// log(`[error] error while importing the react component for '${item.component}'`, { critical: CONFIG?.debug });
