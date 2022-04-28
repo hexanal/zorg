@@ -5,28 +5,24 @@ import watcher from '../lib/watcher.js';
 
 export function run(config) {
   const { styles = null } = config;
-  const { src = null, out = null, dest = null, filename = null } = styles || {};
-  if (!src) {
-    log(`error: missing 'src' configuration key in the 'styles' processor`); // @todo use schema validator
-    return;
-  }
-  if (!out) {
-    log(`error: missing 'out' configuration key in the 'styles' processor`); // @todo
-    return;
-  }
-  if (!dest) {
-    log(`error: missing 'dest' configuration key in the 'styles' processor`); // @todo
-    return;
-  }
-  if (!filename) {
-    log(`error: missing 'filename' configuration key in the 'styles' processor`); // @todo
-    return;
-  }
+  const { src = null, dest = null, filename = null } = styles || {};
+  // if (!src) {
+  //   log(`error: missing 'src' configuration key in the 'styles' processor`); // @todo use schema validator
+  //   return;
+  // }
+  // if (!dest) {
+  //   log(`error: missing 'dest' configuration key in the 'styles' processor`); // @todo
+  //   return;
+  // }
+  // if (!filename) {
+  //   log(`error: missing 'filename' configuration key in the 'styles' processor`); // @todo
+  //   return;
+  // }
   const compiledCSS = sass.renderSync({
     file: src,
     outputStyle: 'compressed',
     sourceMap: process.NODE_ENV === 'development',
-    outFile: out
+    outFile: dest
   });
 
   const time = compiledCSS.stats.duration;

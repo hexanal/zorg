@@ -1,12 +1,19 @@
 import React from 'react';
+import { renderChunk } from '../../../app/renderChunks.js';
 
 export default function List(props) {
-    const { body = [] } = props || {};
-    if (body.length === 0) return false;
+    const { items = [] } = props || {};
+    if (items.length === 0) return false;
 
     return React.createElement(
         'ul',
         null,
+        items.map(item => React.createElement(
+            'li',
+            { key: item.id },
+            renderChunk(item)
+        )),
+        /*
         body.map( link => {
             const {
                 href = null,
@@ -24,5 +31,6 @@ export default function List(props) {
                 )
             );
         })
+        */
     );
 }

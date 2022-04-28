@@ -15,44 +15,30 @@ export default {
     app: {
         watch: ['./src/kuuma/**/*.js'],
         src: './src/kuuma/kuuma.js',
-        dest: './public/assets/js',
-    },
-    chunks: {
-        watch: ['./src/kuuma/components/**/*.js'],
-        src: './src/kuuma/kuuma.server.js',
-        dest: './zorg/_generated/kuuma.server.js',
+        dest: './public/assets',
     },
     html: {
         watch: [
             './content/**/*.json',
-            './src/kuuma/components/**/*.html',
-            './zorg/_generated/**/*.js'
+            './src/kuuma/**/*.js',
         ],
-        contentSrc: './content/**/*.json',
-        componentsDir: './src/kuuma/components',
-        templatesDir: './src/kuuma/components/templates/',
+        contentSrc: './content/**/*.json'
     },
     styles: {
-        watch: ['./src/kuuma/assets/styles/**/*.scss'], // absolutely anywhere there's Sass
-        src: './src/kuuma/assets/styles/kuuma.scss',
-        out: './public',
-        dest: './public',
+        watch: ['./src/kuuma/styles/**/*.scss'], // absolutely anywhere there's Sass
+        src: './src/kuuma/styles/kuuma.scss',
+        dest: './public/assets',
         filename: 'kuuma.css'
     },
     assets: [
-        // {
-        //     id: 'js',
-        //     src: './src/kuuma/js',
-        //     dest: './public/assets/js'
-        // },
         {
-            id: 'manifest',
-            src: './src/kuuma/manifest.webmanifest',
-            dest: './public/manifest.webmanifest',
+            id: 'favicon',
+            src: './src/kuuma/assets/favicon.ico',
+            dest: './public/favicon.ico',
         },
         {
             id: 'robots',
-            src: './src/kuuma/robots.txt',
+            src: './src/kuuma/assets/robots.txt',
             dest: './public/robots.txt',
         },
         {

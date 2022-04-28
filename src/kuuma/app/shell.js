@@ -1,4 +1,5 @@
 // @todo this is related to "server-side" stuff... maybe relocate it
+// @todo more variables for css path, etc. etc. etc.
 export default function shell(html, item, config) {
     const {
         lang = config.lang,
@@ -18,8 +19,9 @@ export default function shell(html, item, config) {
     <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="stylesheet" href="/kuuma.css">
+    <link rel="manifest" href="/assets/manifest.webmanifest">
+    <link rel="icon" href="/assets/images/favicon.png">
+    <link rel="stylesheet" href="/assets/kuuma.css">
 </head>
 <body>
 
@@ -28,7 +30,7 @@ export default function shell(html, item, config) {
 <script type="text/javascript">
 const __ITEM__ = ${JSON.stringify(item)};
 </script>
-<script src="/assets/js/kuuma.js" type="module"></script>
+<script src="/assets/kuuma.js" type="module"></script>
 </body>
 </html>
 `;

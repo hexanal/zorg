@@ -1,5 +1,11 @@
 # Developer Log
 
+## April 27, 2022
+
+* taking shape!
+* `convert ./src/kuuma/assets/images/favicon.png -define icon:auto-resize=64,48,32,16 favicon.ico`
+* create favicon from png!!!
+
 ## April 25, 2022
 
 * what I want to build is something that allows users and devs to "stitch" data and modules together to build webpages and apps

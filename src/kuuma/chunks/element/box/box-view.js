@@ -1,5 +1,5 @@
 import React from 'react';
-import renderChunks from '../../base/render-chunks.js';
+import renderChunks from '../../../app/renderChunks.js';
 
 export default function Box(props) {
     const { body = [] } = props || {};
