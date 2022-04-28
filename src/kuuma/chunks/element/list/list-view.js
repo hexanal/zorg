@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderChunk } from '../../../app/renderChunks.js';
+import renderChunk from '../../../app/chunky/renderChunk.js';
 
 export default function List(props) {
     const { items = [] } = props || {};

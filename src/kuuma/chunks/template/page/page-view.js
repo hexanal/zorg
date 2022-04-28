@@ -1,5 +1,5 @@
 import { createElement as e } from 'react';
-import renderChunks from '../../../app/renderChunks.js';
+import renderChunks from '../../../app/chunky/renderChunks.js';
 
 // @todo something like plop, blueprint
 // `blueprint = `import React, { createElement as e } from 'react';`

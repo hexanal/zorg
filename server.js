@@ -6,17 +6,17 @@ import lusca from 'lusca';
 import morgan from 'morgan';
 import zorg from './zorg/zorg.js';
 import log from './zorg/lib/log.js';
-import config from './src/kuuma/kuuma.config.js';
+import config from './src/kuuma/app/config.js';
 
 dotenv.config();
 
 const app = express();
 
 app.set('host', process.env.HOST || 'localhost');
-app.set('port', process.env.PORT || 8042);
-app.use( compression() );
-app.use( morgan('tiny') );
-app.use( express.json());
+app.set('port', process.env.PORT || 8020);
+app.use(compression());
+app.use(morgan('tiny'));
+app.use(express.json());
 app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 
@@ -26,6 +26,9 @@ app.use((req, res, next) => {
   next();
 });
 
+// @todo try to loop through websites' configs and serve
+// @todo try to make the server-launching, part of zorg's job rather that the other way around?
+// let's go
 // app.use('/', express.static(path.join(path.dirname('public') )) );
 app.use('/', express.static('./public') );
 

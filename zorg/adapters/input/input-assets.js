@@ -1,8 +1,5 @@
-import fse from 'fs-extra';
-import log from '../lib/log.js';
-
 // @todo! 
-export default function inputJson(item, config ) {
+export default function inputJson(item) {
   const file = fs.readFileSync(item, 'utf8');
   const contents = file.toString();
   let json = {};

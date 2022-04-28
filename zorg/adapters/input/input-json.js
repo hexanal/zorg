@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-export default function inputJson(item, config ) {
+export default function inputJson(item) {
   const file = fs.readFileSync(item, 'utf8');
   const contents = file.toString();
   let json = {};

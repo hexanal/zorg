@@ -1,8 +1,7 @@
 import React from 'react';
-import renderChunks from '../../app/renderChunks.js';
+import renderChunks from '../../app/chunky/renderChunks.js';
 
-export default function Box(props) {
-    const { body = [] } = props || {};
-
-    return React.createElement('div', { className: 'box' }, renderChunks(body));
+export default function Json(props) {
+    console.log(props);
+    return false;
 }

@@ -1,15 +1,11 @@
 {
-    "name": "kuuma",
-    "version": "0.0.1",
+    "name": "alpha-kuuma",
+    "version": "0.0.1-alpha",
     "description": "the experimental webzine",
     "author": "Fred Mercy<hello@fredmercy.ca>",
     "type": "module",
     "scripts": {
-        "start": "NODE_ENV=development node server.js",
-        "watch": "NODE_ENV=development node zorg --watch",
-        "build": "NODE_ENV=production node zorg --build",
-        "debug": "NODE_ENV=production node zorg --build --verbose --check-links",
-        "debug-watch": "NODE_ENV=development node zorg --watch --verbose"
+        "start": "NODE_ENV=development node server.js"
     },
     "dependencies": {
         "@babel/preset-env": "^7.16.11",

@@ -1,5 +1,5 @@
 import React from 'react';
-// import renderChunks from '../../../app/renderChunks.js'
+// import renderChunks from '../../../app/chunky/renderChunks.js'
 
 export default function Button(props) {
     // const { body = [] } = props || {};
