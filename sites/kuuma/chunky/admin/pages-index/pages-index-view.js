@@ -8,10 +8,9 @@ export default function PagesIndex(props) {
     const [pages, setPages] = useState([]);
     
     useEffect(() => {
-        fetch('/api/get-pages.json')
+        fetch('/api/get-pages')
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setPages(data);
             })
             .catch(msg => {

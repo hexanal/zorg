@@ -1,7 +1,6 @@
-// import CONFIG from '../../config.zorg.js';
-// import log from './log.js';
+import log from './log.js';
 
-export default function error(msg) {
-  // log(msg, { type: 'error' });
-  console.error(msg);
+export default function error(msg, prefix = '') {
+  if (!process.argv.includes('--error')) return;
+  log(msg, `error in: ${prefix}`);
 }

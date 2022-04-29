@@ -16,6 +16,7 @@ export default function renderChunk(chunkData, context = 'view') {
     } = chunkData;
 
     const chunk = getChunkByType(type);
+
     if (!chunk) return;
     if (!chunk.context)
         return error(`chunk type '${type}' does not export a 'context' key.`); // chunk doesn't provide a `context` key
@@ -26,7 +27,7 @@ export default function renderChunk(chunkData, context = 'view') {
 
     return React.createElement(
         Component,
-        { key: id, ...chunkData },
+        { key: id, ...chunkData }, // @todo passing context along...?
         null
     );
 }

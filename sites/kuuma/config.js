@@ -1,14 +1,6 @@
 export default {
-    // I can override the initial flags with this:
-    // DEBUG: true,
-    // DEBUG: might be a string, like 'component' to target logs only for component-related business, or 'zorg' for zorg-related business, etc. etc.
-    // @todo ideas
-    // WEBSITE_ENABLED: true, // might wanna deactivate it?
-    // ENV: 'dev', ?
     DEBUG: false,
-    HOST: 'localhost',
-    PORT: 8022,
-    ENV: 'dev',
+    DEV_MODE: true,
 
     name: 'kuumakesa.com/', // a name to identify this website
     title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
@@ -20,6 +12,16 @@ export default {
     chunkyPath: './sites/kuuma/chunky',
 
     tasks: [
+        {
+            type: 'serve',
+            host: 'localhost',
+            port: 8022,
+        },
+        {
+            type: 'process-chunks',
+            watch: ['./chunks/**/*.json', './sites/kuuma/**/*.js'],
+            src: './chunks/**/*.json'
+        },
         {
             type: 'esbuild',
             watch: ['./sites/kuuma/**/*.js'],
@@ -47,18 +49,12 @@ export default {
             src: './sites/kuuma/assets/fonts',
             dest: './public/assets/fonts'
         },
-
-        {
-            type: 'process-chunks',
-            watch: ['./chunks/**/*.json', './sites/kuuma/**/*.js'],
-            src: './chunks/**/*.json'
-        },
         {
             type: 'scss',
             watch: ['./sites/kuuma/styles/**/*.scss'], // absolutely anywhere there's Sass
             src: './sites/kuuma/styles/kuuma.scss',
             dest: './public/assets',
             filename: 'kuuma.css'
-        }
+        },
     ],
 }

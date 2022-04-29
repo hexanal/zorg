@@ -1,8 +1,7 @@
 import esbuild from 'esbuild';
 import glob from 'glob';
-import task from '../lib/task.js';
 
-function build(options) {
+export default function build(options) {
   const { src, dest } = options || {};
 
   return esbuild.build({
@@ -13,4 +12,3 @@ function build(options) {
   });
 }
  
-export default task('esbuild', build);

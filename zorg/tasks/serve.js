@@ -3,25 +3,25 @@ import express from 'express';
 import fs from 'fs';
 import lusca from 'lusca';
 import morgan from 'morgan';
-import zorg from './zorg/zorg.js';
-import log from './zorg/lib/log.js';
-import SITES from './sites.js';
+import log from '../lib/log.js';
+import { buildApiRoutes } from '../lib/server.js';
 
-function serveSite(site) {
+export default function serve(options, site) {
   const {
-    HOST = 'localhost',
-    PORT = 8080,
-    ENV = 'dev',
     baseUrl = '/',
     root = './public',
-    name = '[a website has no name...]'
+    name = '[a website has no name...]',
+    env = 'dev',
   } = site || {};
-
+  const {
+    host = 'localhost',
+    port = 8080,
+  } = options || {};
   const app = express();
 
   // express config here
-  app.set('host', HOST);
-  app.set('port', PORT);
+  app.set('host', host);
+  app.set('port', port);
   app.use(compression());
   app.use(morgan('tiny'));
   app.use(express.json());
@@ -36,7 +36,10 @@ function serveSite(site) {
   });
 
   // static site root/base
+  // could be dynamic? 
   app.use(baseUrl, express.static(root) );
+
+  buildApiRoutes(site, app);
 
   // errors
   app.use(function(req, res) {
@@ -48,19 +51,9 @@ function serveSite(site) {
     res.send( fs.readFileSync(`${root}/500/index.html`, 'utf8') );
   })
 
-  return app.listen(PORT, () => {
-    zorg.run(site);
-
-    if (ENV === 'env') {
-      zorg.watch(site);
-    }
-
+  return app.listen(port, () => {
     log(`serving: ${name}`);
-    log(`env: ${ENV}`);
-    log(`url: http://${HOST}:${PORT}`);
+    log(`env: ${env}`);
+    log(`url: http://${host}:${port}`);
   });
 }
-
-const zorged = SITES.map( site => {
-  return serveSite(site);
-});

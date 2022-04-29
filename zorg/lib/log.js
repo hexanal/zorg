@@ -1,4 +1,8 @@
-export default function log(msg, { type = '✦' } = {}) {
-  // console.log(`\x1b[7m[${type}]\x1b[0m ✷  ${msg}`);
-  return false;
+export default function log(msg, prefix = '✦') {
+  if (typeof msg !== 'string') {
+    console.log(msg);
+    return;
+  }
+  if (process.argv.includes('--silent')) return;
+  console.log(`\x1b[7m[${prefix}]\x1b[0m ${msg}`);
 }

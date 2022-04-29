@@ -1,7 +1,7 @@
 import glob from 'glob';
 import inputJson from './inputJson.js';
 
-export default function getPages(props) {
+export default function getPages(res, req) {
     const all = glob.sync('./chunks/**/*.json');
     const parsed = all.map(inputJson);
     const pages = parsed.filter(chunkData => {
@@ -12,5 +12,6 @@ export default function getPages(props) {
     })
     const stripped = pages.map(({ body, ...rest }) => rest);
 
-    return JSON.stringify(stripped);
+    // return JSON.stringify(stripped);
+    return stripped;
 }
