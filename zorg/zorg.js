@@ -1,36 +1,34 @@
-import styles from './tasks/styles.js';
-import assets from './tasks/assets.js';
-import html from './tasks/html.js';
-import app from './tasks/app.js';
+import error from './lib/error.js';
 
-// when calling zorg through node directly
-if ( process.argv.includes('--build') ) run();
-if ( process.argv.includes('--watch') ) watch();
+import scss from './tasks/scss.js';
+import copy from './tasks/copy.js';
+import html from './tasks/process-chunks.js';
+import esbuild from './tasks/esbuild.js';
 
-// @todo add the "serve" task
+const taskFunctions = [
+  esbuild,
+  scss,
+  copy,
+  html,
+];
 
-// basically go through websites,
-// then go through all the tasks
-// create new tasks for each, with config...
-// easy
-export function run(config) {
-  return Promise.all([
-    html.run(config),
-    app.run(config),
-    styles.run(config),
-    assets.run(config)
-  ]);
+export function run(site) {
+  const { tasks = [] } = site || {};
+  return Promise.all( tasks.map(task => {
+    if (!task.type) return error(`task type not specified!`);
+    if (!taskFunctions.find(t => t.type === task.type)) return error(`task '${task.type}' does not exist!`);
+    return taskFunctions.find(t => t.type === task.type).run(task, site);
+  }));
 }
 
-export function watch(config) {
-  console.log('~~');
-
-  return Promise.all([
-    html.watch(config),
-    app.watch(config),
-    styles.watch(config),
-    assets.watch(config)
-  ]);
+export function watch(site) {
+  console.log('~~ still watching :)');
+  const { tasks = [] } = site || {};
+  return Promise.all( tasks.map(task => {
+    if (!task.type) return error(`task type not specified!`);
+    if (!taskFunctions.find(t => t.type === task.type)) return error(`task type '${task.type}' does not exist!`);
+    return taskFunctions.find(t => t.type === task.type).watch(task, site);
+  }));
 }
 
 export default { run, watch }

@@ -1,4 +1,5 @@
 import fs from 'fs';
+import fse from 'fs-extra';
 
 // TODO make it sturdy, catch errors, etc.
 export const createDir = function(dir) {
@@ -17,6 +18,14 @@ export const writeFile = function(filePath, contents) {
       resolve({ dir: filePath, contents })
     })
   })
+}
+
+export function copyFile(src, dest) {
+  return fse.copy(src, dest)
+    .catch(err => {
+      console.error( err );
+    });
+
 }
 
 export const write = function(destination, fileName, contents, verbose = false ) {

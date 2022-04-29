@@ -14,8 +14,7 @@ _generated
 
 # database things
 /media
-/routes
-/content
+/chunks
 comments.db
 # generated exports
 /exports

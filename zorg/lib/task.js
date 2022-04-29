@@ -1,25 +1,21 @@
-import chokidar from 'chokidar';
-import log from './log.js';
+import error from './error.js';
+import watcher from './watcher.js';
 
-// @todo
-// make tasks much easier to create with
-// 'auto-watch'
-// dynamic *task* like tasks(['app', 'html', 'assets', 'chunks', 'styles'])
-// auto import, or tasks({app, html, assets, chunks, styles})
-// from config
+export default function task(type, callback) {
+  if (!type) {
+    error(`no type specified for task`);
+    return { run: () => {}, watch: () => {} } // @todo
+  }
+  if (!callback) {
+    error(`no callback specified for task type: '${type}'`);
+    return { run: () => {}, watch: () => {} } // @todo
+  }
 
-function watcher({ glob, type, callback }) {
-  const watched = chokidar.watch(glob, {
-    ignored: /(^|[\/\\])\../, // ignore dotfiles
-    persistent: true
-  })
+  const run = (options, site) => callback(options, site);
+  const watch = (options, site) => {
+    const { id = 'task', watch: glob = [] } = options || {};
+    return watcher({ id, glob, callback: run});
+  }
 
-  return watched
-    .on('ready', () => log( `watch: ${type}`))
-    .on('change', path => {
-      console.log(`~~`)
-      log( `watch: ${type} changed @ '${path}'`, true)
-      callback()
-    })
+  return { type, run, watch }
 }
-
