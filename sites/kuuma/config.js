@@ -5,7 +5,7 @@ export default {
     // @todo ideas
     // WEBSITE_ENABLED: true, // might wanna deactivate it?
     // ENV: 'dev', ?
-    DEBUG: true,
+    DEBUG: false,
     HOST: 'localhost',
     PORT: 8022,
     ENV: 'dev',
@@ -53,56 +53,12 @@ export default {
             watch: ['./chunks/**/*.json', './sites/kuuma/**/*.js'],
             src: './chunks/**/*.json'
         },
-        // {
-        //     id: 'scss',
-        //     watch: ['./sites/kuuma/styles/**/*.scss'], // absolutely anywhere there's Sass
-        //     options: {
-        //         src: './sites/kuuma/styles/kuuma.scss',
-        //         dest: './public/assets',
-        //         filename: 'kuuma.css'
-        //     },
-        // }
+        {
+            type: 'scss',
+            watch: ['./sites/kuuma/styles/**/*.scss'], // absolutely anywhere there's Sass
+            src: './sites/kuuma/styles/kuuma.scss',
+            dest: './public/assets',
+            filename: 'kuuma.css'
+        }
     ],
-
-    // @todo delete if useless
-    app: {
-        watch: ['./sites/kuuma/**/*.js'],
-        src: './sites/kuuma/kuuma.js',
-        dest: './public/assets',
-    },
-    html: {
-        watch: [
-            './chunks/**/*.json',
-            './sites/kuuma/**/*.js',
-        ],
-        chunks: './chunks/**/*.json'
-    },
-    styles: {
-        watch: ['./sites/kuuma/styles/**/*.scss'], // absolutely anywhere there's Sass
-        src: './sites/kuuma/styles/kuuma.scss',
-        dest: './public/assets',
-        filename: 'kuuma.css'
-    },
-    assets: [
-        {
-            id: 'favicon',
-            src: './sites/kuuma/assets/favicon.ico',
-            dest: './public/favicon.ico',
-        },
-        {
-            id: 'robots',
-            src: './sites/kuuma/assets/robots.txt',
-            dest: './public/robots.txt',
-        },
-        {
-            id: 'images',
-            src: './sites/kuuma/assets/images',
-            dest: './public/assets/images',
-        },
-        {
-            id: 'fonts',
-            src: './sites/kuuma/assets/fonts',
-            dest: './public/assets/fonts'
-        },
-    ]
 }

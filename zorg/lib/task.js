@@ -1,3 +1,4 @@
+import log from './log.js';
 import error from './error.js';
 import watcher from './watcher.js';
 
@@ -11,9 +12,13 @@ export default function task(type, callback) {
     return { run: () => {}, watch: () => {} } // @todo
   }
 
-  const run = (options, site) => callback(options, site);
+  const run = (options, site) => {
+    log(`running task '${type}' (site: '${site.name}')`);
+    callback(options, site);
+  };
   const watch = (options, site) => {
     const { id = 'task', watch: glob = [] } = options || {};
+    log(`watching file for task '${type}' (site: '${site.name}')`);
     return watcher({ id, glob, callback: run});
   }
 

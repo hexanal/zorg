@@ -1,13 +1,17 @@
+import * as ReactDOMServer from 'react-dom/server.js';
 import config from '../config.js';
+import renderChunk from '../chunky/renderChunk.js';
 
 // @todo this is related to "server-side" stuff... maybe relocate it
 // @todo more variables for css path, etc. etc. etc.
-export default function shell(html, item) {
+export default function htmlShell(props) {
     const {
         lang = config.lang || 'en',
         title = config.title || '[missing `title` in config]',
         description = config.description || '[missing `description` in config]',
-    } = item || {};
+    } = props || {};
+    const Root = renderChunk(props);
+    const markup = ReactDOMServer.renderToString(Root);
 
     return `
 <!doctype html>
@@ -27,10 +31,10 @@ export default function shell(html, item) {
 </head>
 <body>
 
-<div id="root">${html}</div>
+<div id="root">${markup}</div>
 
 <script type="text/javascript">
-const __ITEM__ = ${JSON.stringify(item)};
+const __INITIAL_STATE__ = ${JSON.stringify(props)};
 </script>
 <script src="/assets/kuuma.js" type="module"></script>
 </body>

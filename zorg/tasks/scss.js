@@ -1,8 +1,9 @@
 import sass from 'sass';
-import { write } from '../lib/files.js';
 import task from '../lib/task.js';
+import log from '../lib/log.js';
+import { write } from '../lib/files.js';
 
-function compileSass(options, site) {
+function compileSass(options) {
   const { src = null, dest = null, filename = null } = options || {};
   const compiledCSS = sass.renderSync({
     file: src,
@@ -10,7 +11,6 @@ function compileSass(options, site) {
     sourceMap: process.NODE_ENV === 'development',
     outFile: dest
   });
-
   const time = compiledCSS.stats.duration;
 
   return write(dest, filename, compiledCSS.css)
@@ -19,4 +19,4 @@ function compileSass(options, site) {
     })
 }
 
-export default task('sass', compileSass);
+export default task('scss', compileSass);
