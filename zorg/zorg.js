@@ -1,24 +1,11 @@
 import tasker from './lib/tasker.js';
 import info from './lib/info.js';
 import error from './lib/error.js';
-
-import serve from './tasks/serve.js';
-import scss from './tasks/scss.js';
-import copy from './tasks/copy.js';
-import processChunks from './tasks/process-chunks.js';
-import esbuild from './tasks/esbuild.js';
-
-const taskMap = {
-  'serve': serve,
-  'esbuild': esbuild,
-  'scss': scss,
-  'copy': copy,
-  'process-chunks': processChunks,
-};
+import * as processorsList from './processors/index.js';
 
 /**
  * when given a configuration for a website:
- * - runs a series of tasks (specified by the config)
+ * - runs a series of processors (specified by the config)
  * - watches for changes in files when website config provides the key: `DEV_MODE: true`
  * 
  * @param {site object} site provide a Zorgian site configuration object
@@ -27,7 +14,7 @@ const taskMap = {
 export default function zorg(site) {
     const { 
         DEV_MODE = false,
-        tasks = [],
+        processors = [],
     } = site || {};
     const taskMode = DEV_MODE ? 'watch' : 'run';
     info(`
@@ -40,18 +27,19 @@ export default function zorg(site) {
     
 `, 'zorg');
 
-    return Promise.all( tasks.map(options => {
+    return Promise.all( processors.map(options => {
         const { type = null } = options || {};
         if (!type) {
-            return error(`task type not specified!`, 'zorg');
+            error(`task type not specified!`, 'zorg');
+            return;
         }
   
-        const fn = taskMap[type];
+        const fn = processorsList[type];
         if (!fn) {
             error(`
 
 ->  task function '${type}' does not exist!
-    check the website configuration in 'tasks'!
+    check the website configuration in 'processors'!
 `, 'zorg');
             return;
         }

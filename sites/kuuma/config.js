@@ -5,22 +5,24 @@ export default {
     name: 'kuumakesa.com/', // a name to identify this website
     title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
     description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
+
     root: './public', // where to build the static website on the server
     baseURL: '/', // URLs for this website start from this path
     locale: 'en', // the website's locale
 
     chunkyPath: './sites/kuuma/chunky',
 
-    tasks: [
+    processors: [
         {
             type: 'serve',
             host: 'localhost',
             port: 8022,
         },
         {
-            type: 'process-chunks',
+            type: 'processChunks',
             watch: ['./chunks/**/*.json', './sites/kuuma/**/*.js'],
-            src: './chunks/**/*.json'
+            src: './chunks/**/*.json',
+            processors: ['input', 'output']
         },
         {
             type: 'esbuild',

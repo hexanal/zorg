@@ -1,21 +1,23 @@
 import glob from 'glob';
 import debug from '../lib/debug.js';
 import error from '../lib/error.js';
-import * as processors from '../functions/index.js';
+import * as processors from '../processors/index.js';
+
+// @todo rename file
 
 export function getAllChunks() {
     const all = glob.sync('./chunks/**/*.json');
-    if (!processors.inputJson) {
+    if (!processors.input) {
         error(`
 
-->  chunky needs the 'inputJson' processor
-    to exist in '/zorg/functions/inputJson/js'
+->  chunky needs the 'input' processor
+    to exist (e.g. '/zorg/processors/input.js')
 
 `, 'lib/chunky');
         return [];
     }
 
-    const chunks = all.map(processors.inputJson);
+    const chunks = all.map(processors.input);
 
     return chunks;
 }
