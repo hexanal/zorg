@@ -1,7 +1,13 @@
 import { createElement } from 'react';
-import renderChunks from '../../lib/renderChunks.js';
+import createChunk from '../../../../zorg/chunky/client/createChunk.js';
+import renderChunks from '../../../../zorg/chunky/renderChunks.js';
 
-export function view(props) {
+export default createChunk('template-page', {
+    view: Page,
+    edit: PageEditor
+});
+
+export function Page(props) {
     const { body = [] } = props || {};
     if (body.length === 0) return false;
 
@@ -12,13 +18,18 @@ export function view(props) {
     );
 }
 
-export function edit(props) {
-    const { body = [] } = props || {};
+export function PageEditor(props) {
+    const { body = [], onChunkChange: onChange } = props || {};
 
-    return createElement('div', { className: 'editing-page-here' }, renderChunks(body, 'edit'));
-}
+    function onChunkChange(value) {
+        // if (!onChange) return;
 
-export default {
-    type: 'template/page',
-    context: { view, edit }
+        console.log({
+            pageEdit: true,
+            value,
+            body
+        });
+    }
+
+    return createElement('div', { className: 'editing-page-here' }, renderChunks(body, 'edit', { onChunkChange }));
 }

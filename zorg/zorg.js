@@ -1,7 +1,8 @@
-import tasker from './lib/tasker.js';
-import info from './lib/info.js';
-import error from './lib/error.js';
-import * as processorsList from './processors/index.js';
+import createTask from './createTask.js';
+import createServer from './createServer.js';
+import error from './log/error.js';
+import info from './log/info.js';
+import * as availableTasks from './tasks/index.js';
 
 /**
  * when given a configuration for a website:
@@ -14,12 +15,13 @@ import * as processorsList from './processors/index.js';
 export default function zorg(site) {
     const { 
         DEV_MODE = false,
-        processors = [],
+        tasks = [],
     } = site || {};
-    const taskMode = DEV_MODE ? 'watch' : 'run';
+    const mode = DEV_MODE ? 'watch' : 'run';
+
     info(`
 
-# running zorg
+# running zorg [mode: ${mode}]
 
 * website: '${site.name}'
 * title: '${site.title}'
@@ -27,22 +29,24 @@ export default function zorg(site) {
     
 `, 'zorg');
 
-    return Promise.all( processors.map(options => {
+    const app = createServer(site);
+
+    return Promise.all( tasks.map(options => {
         const { type = null } = options || {};
         if (!type) {
-            error(`task type not specified!`, 'zorg');
+            error(`zorg type not specified!`, 'zorg');
             return;
         }
   
-        const fn = processorsList[type];
+        const fn = availableTasks[type];
         if (!fn) {
             error(`
 
-->  task function '${type}' does not exist!
+->  zorg function '${type}' does not exist!
     check the website configuration in 'processors'!
 `, 'zorg');
             return;
         }
-        return tasker(type, fn)[taskMode](options, site);
+        return createTask(type, fn)[mode](options, site, app);
     }));
 }

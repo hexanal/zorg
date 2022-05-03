@@ -1,0 +1,70 @@
+{
+    "type": "template-page",
+    "lang": "en",
+    "title": "Kuuma Kesä",
+    "description": "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.",
+    "url": "/",
+    "isHome": true,
+    "body": [
+        {
+            "type": "element-h1",
+            "body": "ISSUE#001 — JUNE2022"
+        },
+        {
+            "type": "element-p",
+            "body": "What is it?"
+        },
+        {
+            "type": "element-p",
+            "body": "**kuuma kesä** (Finnish for “hot summer”) is my new *webzine* about stuff I like, which might be stuff you like, too!"
+        },
+        {
+            "type": "element-button",
+            "label": "Admin..",
+            "href": "/admin"
+        },
+        {
+            "type": "element-button",
+            "label": "Learn more",
+            "href": "/about"
+        },
+        {
+            "type": "element-button",
+            "label": "Whatever!",
+            "href": "/whatever"
+        },
+        {
+            "type": "element-h2",
+            "body": "news"
+        },
+        {
+            "type": "element-p",
+            "body": "Hopefully, every now and then I will publish a new issue, with all new content."
+        },
+        {
+            "type": "element-p",
+            "body": "Here's what you might find in each issue: short messages about random stuff, news about me, facts about science, photographs of random things, drawings, paintings, videos, animations, bookmarks, playlists, mini games, fields recordings, music, but mostly: **nonsense** :)"
+        },
+        {
+            "type": "element-p",
+            "body": "Sounds good to you? Well read on, then!"
+        },
+        {
+            "type": "element-list",
+            "items": [
+                {
+                    "type": "element-link",
+                    "label": "Universe",
+                    "href": "/001/universe",
+                    "external": false
+                },
+                {
+                    "type": "element-link",
+                    "label": "Photofeed",
+                    "href": "/001/photofeed",
+                    "external": false
+                }
+            ]
+        }
+    ]
+}

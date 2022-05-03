@@ -1,8 +1,8 @@
 import React from 'react';
-import renderChunk from '../../lib/renderChunk.js';
+import renderChunk from '../../../../zorg/chunky/renderChunk.js';
 
 export default {
-    type: 'element/list',
+    type: 'element-list',
     context: { view }
 };
     

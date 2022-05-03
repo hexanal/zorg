@@ -1,0 +1,13 @@
+{
+    "type": "template-page",
+    "lang": "en",
+    "title": "Hello World!",
+    "description": "the famous hello world",
+    "url": "/hello",
+    "body": [
+        {
+            "type": "element-p",
+            "body": "Hello World!"
+        }
+    ]
+}

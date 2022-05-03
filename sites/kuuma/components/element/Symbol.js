@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 
 export default {
-    type: 'element/symbol',
+    type: 'element-symbol',
     context: { view }
 }
 

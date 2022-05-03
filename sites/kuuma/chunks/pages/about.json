@@ -1,0 +1,25 @@
+{
+    "type": "template-page",
+    "lang": "en",
+    "title": "About",
+    "description": "Read on if you want to learn more about what this “kuuma” thing is all about!",
+    "url": "/about",
+    "body": [
+        {
+            "type": "element-h1",
+            "body": "about this"
+        },
+        {
+            "type": "element-p",
+            "body": "For now, *kuuma kesä* is kind of like a portfolio thing. It's kind of a showcase of what I do, and what I care about. As a result it's a very superficial, vaguely artsy blog, about pretty much anything."
+        },
+        {
+            "type": "element-p",
+            "body": "Let's see if this amounts to anything!"
+        },
+        {
+            "type": "element-p",
+            "body": "Super"
+        }
+    ]
+}

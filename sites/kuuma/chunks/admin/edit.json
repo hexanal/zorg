@@ -1,0 +1,13 @@
+{
+    "type": "admin-edit",
+    "lang": "en",
+    "title": "Edit",
+    "description": "Edit",
+    "url": "/admin/edit",
+    "body": [
+        {
+            "type": "element-h1",
+            "body": "Edit page"
+        }
+    ]
+}

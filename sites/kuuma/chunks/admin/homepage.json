@@ -1,0 +1,14 @@
+{
+    "type": "admin-pages-index",
+    "lang": "en",
+    "title": "Kuuma Admin",
+    "description": "admin zone!",
+    "url": "/admin",
+    "isHome": true,
+    "body": [
+        {
+            "type": "element-h1",
+            "body": "Admin!"
+        }
+    ]
+}

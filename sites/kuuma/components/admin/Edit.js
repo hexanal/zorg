@@ -1,22 +1,20 @@
 import { createElement, useState, useEffect } from 'react';
-import renderChunks from '../../lib/renderChunks.js';
+import createChunk from '../../../../zorg/chunky/client/createChunk.js';
+import renderChunks from '../../../../zorg/chunky/renderChunks.js';
 
-export default {
-    type: 'admin/edit',
-    context: { view }
-}
+export default createChunk('admin-edit', {
+    view: ChunkEdit,
+    edit: ChunkEditEditor
+});
 
-export function view(props) {
-    // fetch page data
-    // renderChunks edit for all its chunks :)1:w
+export function ChunkEdit(props) {
     const [chunkToEdit, setChunkToEdit] = useState(null);
     
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const id = params.get('id');
-        console.log( params );
 
-        fetch(`/api/get-chunk/${id}`)
+        fetch(`/api/v1/get-chunk-by-id/${id}`)
             .then(response => response.json())
             .then(data => {
                 setChunkToEdit(data);
@@ -38,14 +36,14 @@ export function view(props) {
     );
 }
 
-export function edit(props) {
+function ChunkEditEditor(props) {
     // fetch page data
     // renderChunks edit for all its chunks :)1:w
     const id = '42';
     const [chunkToEdit, setChunkToEdit] = useState(null);
     
     useEffect(() => {
-        fetch(`/api/get-chunk/${id}`)
+        fetch(`/api/v1/get-chunk-by-id/${id}`)
             .then(response => response.json())
             .then(data => {
                 setChunkToEdit(data);

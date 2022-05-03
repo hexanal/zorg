@@ -9,6 +9,6 @@ export function view(data, config) {
 }
 
 export default {
-    type: 'template/error500',
+    type: 'template-error500',
     context: { view }
 }

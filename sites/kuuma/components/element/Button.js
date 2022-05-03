@@ -1,7 +1,7 @@
 import { createElement } from 'react';
 
 export default {
-    type: 'element/button',
+    type: 'element-button',
     context: { view, edit }
 }
 

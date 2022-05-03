@@ -1,22 +1,38 @@
 import React from 'react';
-import renderChunks from '../../lib/renderChunks.js';
+import createChunk from '../../../../zorg/chunky/client/createChunk.js';
+import renderChunks from '../../../../zorg/chunky/renderChunks.js';
 
-export default {
-    type: 'element/box',
-    context: { view, edit }
-}
+export default createChunk('element-box', {
+    view: Box,
+    edit: BoxEditor
+})
 
-export function view(props) {
+export function Box(props) {
     const { body = [] } = props || {};
 
     return React.createElement('div', { className: 'box' }, renderChunks(body));
 }
 
-export function edit(props) {
-    const { body = [] } = props || {};
+export function BoxEditor(props) {
+    const { body = [], onChunkChange: onChange = null } = props || {};
 
-    return React.createElement('div', { className: 'dit' }, [
-        'editing!',
-        renderChunks(body, 'edit')
-    ]);
+    function onChunkChange(value) {
+        if (!onChange) return;
+
+        onChange(value); // pass it up! @todo STATE MANAGEMENT!!!!
+        console.log({ boxy: true, value });
+    }
+
+    return React.createElement(
+        'div',
+        { className: 'box-edit', style: {border: '2px solid black', padding: '1rem'} },
+        [
+            'editing!',
+            React.createElement(
+                'div',
+                { style: {border: '2px solid black', padding: '1rem'} },
+                renderChunks(body, 'edit', { onChunkChange })
+            )
+        ]
+    );
 }

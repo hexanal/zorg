@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default {
-    type: 'element/link',
+    type: 'element-link',
     context: { view }
 }
 
