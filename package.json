@@ -6,6 +6,7 @@
     "type": "module",
     "scripts": {
         "start": "node main.js",
+        "generate-components-library": "node ./zorg/chunky/generateComponentLibrary.js",
         "silent": "node main.js --silent",
         "errors": "node main.js --error",
         "debug": "node main.js --error --debug"

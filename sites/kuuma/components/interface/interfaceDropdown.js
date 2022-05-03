@@ -1,6 +1,6 @@
 import React from 'react';
-import Button from '../../chunks/button/Button.js';
-import Shortcut from '../element-Shortcut.js';
+import { Button } from '../../components/element/elementButton.js';
+import { Shortcut } from '../../components/element/elementShortcut.js';
 
 export default function Dropdown(props) {
     const {

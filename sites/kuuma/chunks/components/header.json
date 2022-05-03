@@ -1,6 +1,0 @@
-{
-    "type": "component",
-    "name": "interface-header",
-    "view": "interface/Header.js",
-    "editor": "interface/HeaderEditor.js"
-}

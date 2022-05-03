@@ -1,6 +1,6 @@
 import { createElement } from 'react';
 import createChunk from '../../../../zorg/chunky/client/createChunk.js';
-import renderChunks from '../../../../zorg/chunky/renderChunks.js';
+import renderChunk from '../../../../zorg/chunky/renderChunk.js';
 
 export default createChunk('template-page', {
     view: Page,
@@ -14,7 +14,7 @@ export function Page(props) {
     return createElement(
         'div',
         { className: 'default-template' },
-        renderChunks(body)
+        renderChunk(body)
     );
 }
 
@@ -31,5 +31,5 @@ export function PageEditor(props) {
         });
     }
 
-    return createElement('div', { className: 'editing-page-here' }, renderChunks(body, 'edit', { onChunkChange }));
+    return createElement('div', { className: 'editing-page-here' }, renderChunk(body, 'edit', { onChunkChange }));
 }

@@ -1,6 +1,6 @@
 import { createElement, useState, useEffect } from 'react';
 import createChunk from '../../../../zorg/chunky/client/createChunk.js';
-import renderChunks from '../../../../zorg/chunky/renderChunks.js';
+import renderChunk from '../../../../zorg/chunky/renderChunk.js';
 
 export default createChunk('admin-edit', {
     view: ChunkEdit,
@@ -30,15 +30,13 @@ export function ChunkEdit(props) {
         [
             createElement('div', null, 'Hello'),
             chunkToEdit ? createElement('div', null,
-                renderChunks(chunkToEdit, 'edit')
+                renderChunk(chunkToEdit, 'edit')
             ) : false,
         ]
     );
 }
 
 function ChunkEditEditor(props) {
-    // fetch page data
-    // renderChunks edit for all its chunks :)1:w
     const id = '42';
     const [chunkToEdit, setChunkToEdit] = useState(null);
     
@@ -59,7 +57,7 @@ function ChunkEditEditor(props) {
         [
             createElement('div', null, 'Hello'),
             chunkToEdit ? createElement('div', null,
-                renderChunks(chunkToEdit, 'edit')
+                renderChunk(chunkToEdit, 'edit')
             ) : false,
         ]
     );

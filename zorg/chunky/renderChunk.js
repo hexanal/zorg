@@ -7,14 +7,25 @@ import getComponentByChunkType from './getComponentByChunkType.js';
  * @param {chunkData} object the chunk data as `chunkData`, to match React's nomenclature
  * @returns a react element representing the chunk
  */
-export default function renderChunk(chunkData, context = 'view', otherProps) {
+// @critical
+// @todo otherProps is there to be able to propagate events and stuff, but
+// I need to eventually just stick everything in the props/chunk data
+// so there...
+export default function renderChunk(chunk, context = 'view', otherProps, site = null) {
+    return Array.isArray(chunk)
+        ? chunk.map(c => render(c, context, otherProps, site))
+        : render(chunk, context, otherProps, site)
+}
+
+function render(chunkData, context = 'view', otherProps, site){
     const {
         id = '', // @todo each chunk should have a unique id
         type = 'json', // default "fallback" type is json; it just logs its chunkData;
     } = chunkData;
 
-    const Component = getComponentByChunkType(type, context);
-    if (!Component) {
+    const chunkComponent = getComponentByChunkType(type, context, site);
+    
+    if (!chunkComponent) {
         return React.createElement(
             'div',
             null,
@@ -23,7 +34,7 @@ export default function renderChunk(chunkData, context = 'view', otherProps) {
     }
 
     return React.createElement(
-        Component,
+        chunkComponent,
         { 
             key: id,
             context,

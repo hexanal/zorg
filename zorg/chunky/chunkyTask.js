@@ -1,10 +1,21 @@
+import glob from 'glob';
 import * as ReactDOMServer from 'react-dom/server.js';
-import renderChunk from '../renderChunk.js';
-import debug from '../../log/debug.js';
-import { write } from '../../files.js';
+import renderChunk from './renderChunk.js';
+import debug from '../log/debug.js';
+import { write } from '../files.js';
+import { parseJsonAtPath } from '../files.js';
+
+export default function task(options, site) {
+    const { src = null } = options || {};
+    const paths = glob.sync(src, {}) || [];
+    const parsed = paths.map(path => parseJsonAtPath(path));
+
+    return parsed.map(chunk => outputChunkToHtml(chunk, options, site));
+}
 
 // @todo error msg
-export default function outputChunkToHtml(chunk, site) {
+// @todo replace string, from template in site?
+export function outputChunkToHtml(chunk, options, site) {
     if (!chunk.type || !chunk.url) return chunk; // don't build if we're not dealing with a chunk, and if it's not a chunk to "render" to html (i.e. a page with a URL)
 
     const {
@@ -17,7 +28,7 @@ export default function outputChunkToHtml(chunk, site) {
         port = 8080,
         root = './public'
     } = site || {};
-    const Root = renderChunk(chunk);
+    const Root = renderChunk(chunk, 'view', {}, site);
     const markup = ReactDOMServer.renderToString(Root);
     const html = `
 <!doctype html>

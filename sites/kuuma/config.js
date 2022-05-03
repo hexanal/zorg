@@ -17,8 +17,10 @@ export default {
     tasks: [
         {
             type: 'chunky',
+            watch: ['./sites/kuuma/chunks/**/*.json', './sites/kuuma/components/**/*.js'],
             src: './sites/kuuma/chunks/**/*.json',
-            watch: ['./sites/kuuma/chunks/**/*.json', './sites/kuuma/**/*.js'],
+            // @todo
+            componentsDir: './sites/kuuma/components',
         },
         {
             type: 'esbuild',
@@ -34,16 +36,19 @@ export default {
         },
         {
             type: 'copy',
+            watch: ['./sites/kuuma/assets/robots.txt'],
             src: './sites/kuuma/assets/robots.txt',
             dest: './public/robots.txt',
         },
         {
             type: 'copy',
+            watch: ['./sites/kuuma/assets/images/**/*'],
             src: './sites/kuuma/assets/images',
             dest: './public/assets/images',
         },
         {
             type: 'copy',
+            watch: ['./sites/kuuma/assets/fonts/**/*'],
             src: './sites/kuuma/assets/fonts',
             dest: './public/assets/fonts'
         },

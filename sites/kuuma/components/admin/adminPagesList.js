@@ -1,8 +1,8 @@
 import { createElement, useState, useEffect } from 'react';
-import renderChunks from '../../../../zorg/chunky/renderChunks.js';
+import renderChunks from '../../../../zorg/chunky/renderChunk.js';
 
 export default {
-    type: 'admin-pages-index',
+    type: 'admin-pages-list',
     context: { view }
 }
 

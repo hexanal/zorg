@@ -2,10 +2,13 @@ import { createElement } from 'react';
 
 export default {
     type: 'element-button',
-    context: { view, edit }
+    context: {
+        view: Button,
+        edit: ButtonEdit
+    }
 }
 
-export function view(props) {
+export function Button(props) {
     const {
         href = null,
         label = 'Click',
@@ -22,7 +25,7 @@ export function view(props) {
     );
 }
 
-export function edit(props) {
+export function ButtonEdit(props) {
     return createElement(
         'div',
         {

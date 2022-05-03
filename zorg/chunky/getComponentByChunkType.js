@@ -1,8 +1,6 @@
 import { createElement } from 'react';
-// @todo how to fetch those component... or does this function necessarily needs to sit in the frontend code?
-import * as components from '../../sites/kuuma/components/index.js';
-
-const library = Object.values(components);
+// @critical @todo how to fetch those component... or does this function necessarily needs to sit in the frontend code?
+import library from '../../sites/kuuma/chunky.library.js';
 
 /**
  * takes a type of chunk as string and returns the chunk's object
@@ -12,7 +10,7 @@ const library = Object.values(components);
  */
 // @todo export default function getChunkTypeComponentByContext(type = '', context = 'view') {
 export default function getComponentByChunkType(type = '', context = 'view') {
-    const found = library.find(chnk => chnk.type === type);
+    const found = library[type];
     if (!found) {
         console.error(`no chunk found of type: '${type}'`, 'getComponentByChunkType'); // couldn't find an associated chunks
         return createElement(

@@ -1,6 +1,6 @@
 import React from 'react';
 import createChunk from '../../../../zorg/chunky/client/createChunk.js';
-import renderChunks from '../../../../zorg/chunky/renderChunks.js';
+import renderChunk from '../../../../zorg/chunky/renderChunk.js';
 
 export default createChunk('element-box', {
     view: Box,
@@ -10,7 +10,7 @@ export default createChunk('element-box', {
 export function Box(props) {
     const { body = [] } = props || {};
 
-    return React.createElement('div', { className: 'box' }, renderChunks(body));
+    return React.createElement('div', { className: 'box' }, renderChunk(body));
 }
 
 export function BoxEditor(props) {
@@ -31,7 +31,7 @@ export function BoxEditor(props) {
             React.createElement(
                 'div',
                 { style: {border: '2px solid black', padding: '1rem'} },
-                renderChunks(body, 'edit', { onChunkChange })
+                renderChunk(body, 'edit', { onChunkChange })
             )
         ]
     );
