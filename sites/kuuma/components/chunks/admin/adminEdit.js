@@ -1,5 +1,5 @@
 import { createElement, useState, useEffect } from 'react';
-import { createChunk } from '../../kuuma.chunky.js';
+import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
     type: 'admin-edit',
@@ -11,6 +11,7 @@ export default {
 export function AdminEdit(props) {
     const [chunkToEdit, setChunkToEdit] = useState(null);
     
+    // @todo could probably be turned into a neat hook
     useEffect(() => {
         const params = new URLSearchParams(location.search);
         const id = params.get('id');
@@ -31,7 +32,7 @@ export function AdminEdit(props) {
         [
             createElement('div', null, 'Hello'),
             chunkToEdit ? createElement('div', null,
-            createChunk(chunkToEdit, { context: 'edit' })
+            chunkToComponent(chunkToEdit, { context: 'edit' })
             ) : false,
         ]
     );

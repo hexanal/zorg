@@ -1,5 +1,5 @@
 import { createElement } from 'react';
-import { createChunk } from '../../kuuma.chunky.js';
+import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
     type: 'template-page',
@@ -16,7 +16,7 @@ export function Page(props) {
     return createElement(
         'div',
         { className: 'default-template' },
-        createChunk(body)
+        chunkToComponent(body)
     );
 }
 
@@ -38,7 +38,7 @@ export function PageEditor(props) {
         {
             className: 'editing-page-here'
         },
-        createChunk(
+        chunkToComponent(
             body,
             { 
                 context: 'edit',

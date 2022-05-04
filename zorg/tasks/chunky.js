@@ -1,5 +1,5 @@
 import glob from 'glob';
-import outputChunkToHtml from '../chunky/outputChunkToHtml.js';
+import chunkToHtml from '../chunky/chunkToHtml.js';
 import { parseJsonAtPath } from '../files.js';
 
 export default function chunky(options, site) {
@@ -7,5 +7,5 @@ export default function chunky(options, site) {
     const paths = glob.sync(src, {}) || [];
     const parsedChunks = paths.map(path => parseJsonAtPath(path));
 
-    return parsedChunks.map(chunk => outputChunkToHtml(chunk, site));
+    return parsedChunks.map(chunk => chunkToHtml(chunk, options, site));
 }

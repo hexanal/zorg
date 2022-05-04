@@ -3,19 +3,21 @@ import express from 'express';
 import fs from 'fs';
 import lusca from 'lusca';
 // import morgan from 'morgan';
-import * as endpoints from './endpoints/index.js';
+import * as endpoints from '../endpoints/index.js';
 
 const { argv = null } = process || {};
 
-export default function createServer(site) {
+export default function serve(options, site) {
+  const {
+    name = '[a website has no name...]',
+  } = site || {};
   const {
     baseUrl = '/',
     root = './public',
-    name = '[a website has no name...]',
     env = 'dev',
     host = 'localhost',
     port = 8080,
-  } = site || {};
+  } = options || {};
   const app = express();
 
   // express config here
@@ -41,7 +43,7 @@ export default function createServer(site) {
   app.use(baseUrl, express.static(root) );
 
   Object.values(endpoints).map(endpoint => {
-    endpoint(site, app);
+    endpoint(app, options);
   });
 
   // errors
@@ -58,9 +60,9 @@ export default function createServer(site) {
 
 console.log(`
 
-# running server (express)
+# running server
 
-* serving: ${name}
+* site: ${name}
 * env: ${env}
 * url: http://${host}:${port}
 

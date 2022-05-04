@@ -11,6 +11,7 @@
         "debug": "node main.js --error --debug"
     },
     "dependencies": {
+        "zorg": "./zorg/zorg.js",
         "@babel/preset-env": "^7.16.11",
         "@babel/preset-react": "^7.16.7",
         "@babel/register": "^7.17.7",

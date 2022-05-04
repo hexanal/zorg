@@ -1,5 +1,5 @@
 import React from 'react';
-import { createChunk } from '../../kuuma.chunky.js';
+import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
     type: 'element-box',
@@ -12,7 +12,7 @@ export default {
 export function Box(props) {
     const { body = [] } = props || {};
 
-    return React.createElement('div', { className: 'box' }, createChunk(body));
+    return React.createElement('div', { className: 'box' }, chunkToComponent(body));
 }
 
 export function BoxEditor(props) {
@@ -33,7 +33,7 @@ export function BoxEditor(props) {
             React.createElement(
                 'div',
                 { style: {border: '2px solid black', padding: '1rem'} },
-                createChunk(body, {
+                chunkToComponent(body, {
                     context: 'edit',
                     onChunkChange
                 })

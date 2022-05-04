@@ -1,6 +1,4 @@
 import createTask from './createTask.js';
-import createServer from './createServer.js';
-import * as availableTasks from './tasks/index.js';
 
 /**
  * when given a configuration for a website:
@@ -11,11 +9,8 @@ import * as availableTasks from './tasks/index.js';
  * @returns a Promise
  */
 export default function zorg(site) {
-    const { 
-        DEV_MODE = false,
-        tasks = [],
-    } = site || {};
-    const mode = DEV_MODE ? 'watch' : 'run';
+    const { ZORG_MODE = false, tasks = [], } = site || {};
+    const mode = ZORG_MODE ? 'watch' : 'run';
 
 // console.log(`
 
@@ -27,28 +22,11 @@ export default function zorg(site) {
 
 // `);
 
-    const app = createServer(site);
-
-    return Promise.all( tasks.map(options => {
-        const { type = null } = options || {};
-        if (!type) {
-            console.error(`zorg type not specified!`, 'zorg');
-            return;
+    return Promise.all( tasks.map(({task, ...options}) => {
+        if (typeof task !== 'function') {
+            return console.error(`zorg task is not a function`);
         }
 
-        const fn = availableTasks[type];
-        if (!fn) {
-
-console.error(`
-
-->  zorg function '${type}' does not exist!
-check the website configuration in 'processors'!
-
-`);
-
-            return;
-        }
-
-        return createTask(type, fn)[mode](options, site, app);
+        return createTask(task)[mode](options, site);
     }));
 };

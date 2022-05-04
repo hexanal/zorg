@@ -1,25 +1,23 @@
 import * as ReactDOMServer from 'react-dom/server.js';
-import createChunky from '../chunky/createChunky.js';
+import chunky from './chunky.js';
 import { write } from '../files.js';
 
 // @todo error msg
 // @todo replace string, from template in site?
-export default function outputChunkToHtml(chunk, site) {
+export default function chunkToHtml(chunk, options, site) {
     if (!chunk.type || !chunk.url) return chunk; // don't build if we're not dealing with a chunk, and if it's not a chunk to "render" to html (i.e. a page with a URL)
 
+    const {
+        chunks = [],
+        dest = './public',
+    } = options || {};
     const {
         lang = site.lang || 'en',
         title = site.title || '[missing `title` in site]',
         description = site.description || '[missing `description` in site]',
     } = chunk || {};
-    const {
-        host = 'localhost',
-        port = 8080,
-        root = './public',
-        library = {} // chunky library needs to be in the config
-    } = site || {};
-    const createChunk = createChunky(library);
-    const Root = createChunk(chunk);
+    const { chunkToComponent } = chunky(chunks);
+    const Root = chunkToComponent(chunk);
     const markup = ReactDOMServer.renderToString(Root);
     const html = `<!doctype html>
 <html lang="${lang}">
@@ -47,8 +45,9 @@ const __CHUNK__ = ${JSON.stringify(chunk)};
 </body>
 </html>
 `;
-    const serverURL = host ? `http://${host}${port ? ':'+port:''}${chunk.url}` : null;
-    const destination = `${root}${chunk.url}`; // filesystem destination to write the HTML
+    // @todo grab that from `site`
+    // const serverURL = host ? `http://${host}${port ? ':'+port:''}${chunk.url}` : null;
+    const destination = `${dest}${chunk.url}`; // filesystem destination to write the HTML
 
 console.log(`
   
@@ -58,8 +57,6 @@ console.log(`
 * type: '${chunk.type}'
 * url: '${chunk.url}'
 * built in folder: '${destination}'
-${serverURL ?
-'* accessible at: ' + serverURL : ''}
 
 ~~
 

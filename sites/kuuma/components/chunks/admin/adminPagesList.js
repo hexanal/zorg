@@ -1,5 +1,5 @@
 import { createElement, useState, useEffect } from 'react';
-import { createChunk } from '../../kuuma.chunky.js';
+import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
     type: 'admin-pages-list',
@@ -28,7 +28,7 @@ export function AdminPagesList(props) {
         'div',
         { className: 'admin-pages-view-template' },
         [
-            body ? createChunk(body) : false,
+            body ? chunkToComponent(body) : false,
             pages.length !== 0
                 ? pages.map(page => createElement(
                     'div',

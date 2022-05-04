@@ -1,5 +1,5 @@
 import React from 'react';
-import { createChunk } from '../../kuuma.chunky.js';
+import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
     type: 'element-list',
@@ -16,7 +16,7 @@ export function view(props) {
         items.map(item => React.createElement(
             'li',
             { key: item.id },
-            createChunk(item)
+            chunkToComponent(item)
         )),
     );
 }
