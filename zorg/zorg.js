@@ -10,7 +10,7 @@ import * as availableTasks from './tasks/index.js';
  * @param {site object} site provide a Zorgian site configuration object
  * @returns a Promise
  */
-export default function createZorgSite(site) {
+export default function zorg(site) {
     const { 
         DEV_MODE = false,
         tasks = [],

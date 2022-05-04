@@ -14,14 +14,16 @@ import fallbackChunk from './fallbackChunk.js';
 // I need to eventually just stick everything in the props/chunk data
 // so there...
 // @todo the array/single chunk thing... not CLEAR!!!
-export default function outputChunkToComponent(chunk, site = null, extraProps = {}) {
+export default function outputChunkToComponent(chunk, extraProps = {}, library = {}) {
     return Array.isArray(chunk)
-        ? chunk.map(c => output(c, site, extraProps))
-        : output(chunk, site, extraProps);
+        ? chunk.map(c => output(c, extraProps, library))
+        : output(chunk, extraProps, library);
 }
 
-function output(chunk, site, extraProps = {}) {
-    const ChunkComponent = getComponentByChunkForSite(chunk, site, extraProps) || fallbackChunk;
+function output(chunk, extraProps = {}, library) {
+    const ChunkComponent = getComponentByChunkForSite(chunk, extraProps, library) || fallbackChunk;
+
+    console.log( ChunkComponent );
 
     if (!ChunkComponent) {
         return React.createElement('div', null, 'error!');

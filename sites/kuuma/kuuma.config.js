@@ -1,14 +1,19 @@
-import { config } from './kuuma.chunky.js';
+import { library } from './kuuma.chunky.js';
 
 export default {
-    ...config,
-
+    id: 'kuuma', // must match the folder!
+    name: 'kuumakesa.com/', // a name to identify this website
+    title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
+    description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
+    
     host: 'localhost',
     port: 8022,
 
     root: './public', // where to build the static website on the server
     baseURL: '/', // URLs for this website start from this path
     locale: 'en', // the website's locale
+
+    library,
 
     DEBUG: false,
     DEV_MODE: true,

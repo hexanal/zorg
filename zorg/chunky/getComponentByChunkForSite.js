@@ -7,12 +7,7 @@ import { createElement } from 'react';
  * @param {type} string
  * @returns the found `chunk` object
  */
-export default function getComponentByChunkForSite(chunk, site, extraProps) {
-    const { library = null } = site || {};
-    if (!library) {
-        return console.error('huh... no chunk library provided?');
-    }
-
+export default function getComponentByChunkForSite(chunk, extraProps, library = {}) {
     const found = library[chunk.type];
     if (!found) {
         console.error(`no chunk found of type: '${chunk.type}'`); // couldn't find an associated chunks
@@ -29,8 +24,7 @@ export default function getComponentByChunkForSite(chunk, site, extraProps) {
     const context = propsContext || contextOverride || 'view';
     const Component = found.context[context];
     if (!Component) {
-        console.error(`no component found for type '${chunk.type}', in '${chunk.context}' context.`);
-        return createElement( 'div', null, 'error!');
+        return console.error(`no component found for type '${chunk.type}', in '${chunk.context}' context.`);
     }
 
     return Component;

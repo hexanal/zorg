@@ -1,2 +1,2 @@
-export { default as getChunkById } from './getChunkById.js';
-export { default as getChunksOfType } from './getChunksOfType.js';
+export { default as createGetChunkById } from './createGetChunkById.js';
+export { default as createGetChunksOfType } from './createGetChunksOfType.js';

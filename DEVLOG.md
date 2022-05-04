@@ -4,7 +4,7 @@
 
 * taking shape!
 * `convert ./sites/kuuma/assets/images/favicon.png -define icon:auto-resize=64,48,32,16 favicon.ico`
-* create favicon from png!!!
+    * create favicon from png!!!
 
 ## April 25, 2022
 

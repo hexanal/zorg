@@ -1,28 +1,36 @@
-import * as ReactDOM from 'react-dom'; // using React!
-import library from './chunks/chunks.js';
-import outputChunkToComponent from '../../zorg/chunky/outputChunkToComponent.js';
+// inits Chunky with the library of chunks, so you can use `createChunk(chunkData, extraProps);` in your React component to render sub-chunks
+import createChunky from '../../zorg/chunky/createChunky.js';
 
-export const config = {
-    id: 'kuuma', // must match the folder!
-    name: 'kuumakesa.com/', // a name to identify this website
-    title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
-    description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
-    library
+import adminEdit from './chunks/admin/adminEdit.js';
+import adminPagesList from './chunks/admin/adminPagesList.js';
+
+import elementBox from './chunks/element/elementBox.js';
+import elementButton from './chunks/element/elementButton.js';
+import elementH1 from './chunks/element/elementH1.js';
+import elementH2 from './chunks/element/elementH2.js';
+import elementLink from './chunks/element/elementLink.js';
+import elementList from './chunks/element/elementList.js';
+import elementP from './chunks/element/elementP.js';
+import elementShortcut from './chunks/element/elementShortcut.js';
+import elementSymbol from './chunks/element/elementSymbol.js';
+
+import templateError500 from './chunks/template/error500.js';
+import templatePage from './chunks/template/page.js';
+
+export const library = {
+    'admin-edit': adminEdit,
+    'admin-pages-list': adminPagesList,
+    'element-box': elementBox,
+    'element-button': elementButton,
+    'element-h1': elementH1,
+    'element-h2': elementH2,
+    'element-link': elementLink,
+    'element-list': elementList,
+    'element-p': elementP,
+    'element-shortcut': elementShortcut,
+    'element-symbol': elementSymbol,
+    'template-error500': templateError500,
+    'template-page': templatePage,
 };
 
-// @todo
-export function createChunk(chunkData, extraProps = {}) {
-    return outputChunkToComponent(chunkData, config, extraProps);
-}
-
-// export function createChunk(chunkData, extraProps = {}) {
-//     return outputChunkToComponent(chunkData, config, { ...extraProps, context: 'edit' });
-// }
-
-export function hydrateClient() {
-    const container = document.getElementById('root');
-    const Root = createChunk(__CHUNK__);
-
-    // @todo/doc this page was already built from the server, so we simply "hydrate" with the props in the __CHUNK_ global variable.
-    ReactDOM.hydrate(Root, container); 
-}
+export const createChunk = createChunky(library);

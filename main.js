@@ -1,4 +1,8 @@
-import createZorgSite from './zorg/createZorgSite.js';
-import config from './sites/kuuma/kuuma.zorg.js';
+import zorg from './zorg/zorg.js';
+import kuumaConfig from './sites/kuuma/kuuma.config.js';
+// import anotherSite from './sites/another/another.zorg.js'; // @todo example
 
-createZorgSite(config); // @todo returns a Promise once everything's done... good?
+// running Kuuma Kesä
+zorg(kuumaConfig);
+
+// zorg(anotherSite);

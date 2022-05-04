@@ -1,5 +1,5 @@
 import * as ReactDOMServer from 'react-dom/server.js';
-import renderChunkForSite from './outputChunkToComponent.js';
+import createChunky from '../chunky/createChunky.js';
 import { write } from '../files.js';
 
 // @todo error msg
@@ -10,14 +10,16 @@ export default function outputChunkToHtml(chunk, site) {
     const {
         lang = site.lang || 'en',
         title = site.title || '[missing `title` in site]',
-        description = site.description || '[missing `description` in site]'
+        description = site.description || '[missing `description` in site]',
     } = chunk || {};
     const {
         host = 'localhost',
         port = 8080,
-        root = './public'
+        root = './public',
+        library = {} // chunky library needs to be in the config
     } = site || {};
-    const Root = renderChunkForSite(chunk, site); // @todo maybe modifier for diese Scheisse?
+    const createChunk = createChunky(library);
+    const Root = createChunk(chunk);
     const markup = ReactDOMServer.renderToString(Root);
     const html = `<!doctype html>
 <html lang="${lang}">

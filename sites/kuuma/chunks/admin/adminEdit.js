@@ -1,5 +1,5 @@
 import { createElement, useState, useEffect } from 'react';
-import { createChunk } from '../../kuuma.chunky.js'
+import { createChunk } from '../../kuuma.chunky.js';
 
 export default {
     type: 'admin-edit',
