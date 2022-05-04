@@ -1,5 +1,5 @@
 import * as ReactDOMServer from 'react-dom/server.js';
-import renderChunkForSite from './renderChunkForSite.js';
+import renderChunkForSite from './outputChunkToComponent.js';
 import { write } from '../files.js';
 
 // @todo error msg

@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderChunkView, renderChunkEdit } from '../../kuuma.chunky.js';
+import { createChunk } from '../../kuuma.chunky.js';
 
 export default {
     type: 'element-box',
@@ -12,7 +12,7 @@ export default {
 export function Box(props) {
     const { body = [] } = props || {};
 
-    return React.createElement('div', { className: 'box' }, renderChunkView(body));
+    return React.createElement('div', { className: 'box' }, createChunk(body));
 }
 
 export function BoxEditor(props) {
@@ -33,7 +33,10 @@ export function BoxEditor(props) {
             React.createElement(
                 'div',
                 { style: {border: '2px solid black', padding: '1rem'} },
-                renderChunkEdit(body, { onChunkChange })
+                createChunk(body, {
+                    context: 'edit',
+                    onChunkChange
+                })
             )
         ]
     );

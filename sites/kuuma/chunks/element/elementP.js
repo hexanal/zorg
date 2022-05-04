@@ -1,36 +1,14 @@
 import React, { useState } from 'react';
-/*
-import ChunkyTextField from '../../../../zorg/chunky/fields/text/ChunkyTextField.js';
-
-export function PEditor(props) {
-    // @todo blah blah all the props destructuring, events, etc.
-
-    return React.createElement(
-        ChunkyTextField,
-        { ...props },
-        null
-    );
-}
-
-//////// chunky text field
-export default function ChunkyTextField(props) {
-
-    return React.createElement(
-        input,
-        { ...props },
-        null
-    );
-}
-
-
-*/
 
 export default {
     type: 'element-p',
-    context: { view, edit }
-}
+    context: {
+        view: P,
+        edit: PEditor
+    }
+};
 
-export function view(props) {
+export function P(props) {
     const { body = null } = props || {};
     if (!body) return false;
 
@@ -41,7 +19,7 @@ export function view(props) {
     );
 }
 
-export function edit(props) {
+export function PEditor(props) {
     const { body = null, onChunkChange = null } = props || {};
     if (!body) return false;
 

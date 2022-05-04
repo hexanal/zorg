@@ -1,14 +1,14 @@
 import { createElement, useState, useEffect } from 'react';
-import { renderChunkEdit } from '../../kuuma.chunky.js'
+import { createChunk } from '../../kuuma.chunky.js'
 
 export default {
     type: 'admin-edit',
     context: {
-        view: ChunkEdit,
+        view: AdminEdit,
     }
 };
 
-export function ChunkEdit(props) {
+export function AdminEdit(props) {
     const [chunkToEdit, setChunkToEdit] = useState(null);
     
     useEffect(() => {
@@ -31,7 +31,7 @@ export function ChunkEdit(props) {
         [
             createElement('div', null, 'Hello'),
             chunkToEdit ? createElement('div', null,
-            renderChunkEdit(chunkToEdit)
+            createChunk(chunkToEdit, { context: 'edit' })
             ) : false,
         ]
     );

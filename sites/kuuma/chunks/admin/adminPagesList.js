@@ -1,12 +1,15 @@
 import { createElement, useState, useEffect } from 'react';
-import { renderChunkView, renderChunkEdit } from '../../kuuma.chunky.js';
+import { createChunk } from '../../kuuma.chunky.js';
 
 export default {
     type: 'admin-pages-list',
-    context: { view }
+    context: {
+        view: AdminPagesList,
+        edit: AdminPagesListEditor // @todo?
+    }
 };
 
-export function view(props) {
+export function AdminPagesList(props) {
     const { body = null } = props || {};
     const [pages, setPages] = useState([]);
 
@@ -25,7 +28,7 @@ export function view(props) {
         'div',
         { className: 'admin-pages-view-template' },
         [
-            body ? renderChunkView(body) : false,
+            body ? createChunk(body) : false,
             pages.length !== 0
                 ? pages.map(page => createElement(
                     'div',
@@ -37,7 +40,7 @@ export function view(props) {
     );
 }
 
-export function edit(props) {
+export function AdminPagesListEditor(props) {
     // const { body = null } = props || {};
     // const [pages, setPages] = useState([]);
     

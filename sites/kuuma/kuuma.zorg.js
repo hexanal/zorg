@@ -1,7 +1,6 @@
 import { config } from './kuuma.chunky.js';
-import createZorgSite from '../../zorg/createZorgSite.js';
 
-export default () => createZorgSite({
+export default {
     ...config,
 
     host: 'localhost',
@@ -58,4 +57,4 @@ export default () => createZorgSite({
             filename: 'kuuma.css'
         },
     ],
-});
+};

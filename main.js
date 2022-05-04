@@ -1,3 +1,4 @@
-import kuuma from './sites/kuuma/kuuma.zorg.js';
+import createZorgSite from './zorg/createZorgSite.js';
+import config from './sites/kuuma/kuuma.zorg.js';
 
-kuuma(); // .then(console.log);
+createZorgSite(config); // @todo returns a Promise once everything's done... good?
