@@ -3,8 +3,6 @@ import express from 'express';
 import fs from 'fs';
 import lusca from 'lusca';
 // import morgan from 'morgan';
-import log from './log/log.js';
-import todo from './log/todo.js';
 import * as endpoints from './endpoints/index.js';
 
 const { argv = null } = process || {};
@@ -42,7 +40,6 @@ export default function createServer(site) {
   // could be dynamic? 
   app.use(baseUrl, express.static(root) );
 
-  todo(`i think it's important to make this more obvious somehow...`);
   Object.values(endpoints).map(endpoint => {
     endpoint(site, app);
   });
@@ -58,7 +55,8 @@ export default function createServer(site) {
   })
 
   app.listen(port, () => {
-    log(`
+
+console.log(`
 
 # running server (express)
 

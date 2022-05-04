@@ -1,4 +1,3 @@
-import zorg from './zorg/zorg.js';
-import kuuma from './sites/kuuma/config.js';
+import kuuma from './sites/kuuma/kuuma.zorg.js';
 
-zorg(kuuma);
+kuuma(); // .then(console.log);

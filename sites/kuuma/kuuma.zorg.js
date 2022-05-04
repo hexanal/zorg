@@ -1,26 +1,24 @@
-export default {
-    DEBUG: false,
-    DEV_MODE: true,
+import { config } from './kuuma.chunky.js';
+import createZorgSite from '../../zorg/createZorgSite.js';
+
+export default () => createZorgSite({
+    ...config,
 
     host: 'localhost',
     port: 8022,
-
-    id: 'kuuma', // must match the folder!
-    name: 'kuumakesa.com/', // a name to identify this website
-    title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
-    description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
 
     root: './public', // where to build the static website on the server
     baseURL: '/', // URLs for this website start from this path
     locale: 'en', // the website's locale
 
+    DEBUG: false,
+    DEV_MODE: true,
+
     tasks: [
         {
             type: 'chunky',
-            watch: ['./sites/kuuma/chunks/**/*.json', './sites/kuuma/components/**/*.js'],
-            src: './sites/kuuma/chunks/**/*.json',
-            // @todo
-            componentsDir: './sites/kuuma/components',
+            watch: ['./sites/kuuma/data/**/*.json', './sites/kuuma/chunks/**/*.js'],
+            src: './sites/kuuma/data/**/*.json',
         },
         {
             type: 'esbuild',
@@ -60,4 +58,4 @@ export default {
             filename: 'kuuma.css'
         },
     ],
-}
+});

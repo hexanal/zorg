@@ -41,4 +41,3 @@ export default function(options, site) {
     plugins: plugins(site),
   });
 }
- 

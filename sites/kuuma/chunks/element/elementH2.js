@@ -6,10 +6,15 @@ export default {
 }
 
 export function view(props) {
+
     const { body = null } = props || {};
     if (!body) return false;
 
-    return React.createElement('h2', null, body);
+    return React.createElement(
+        'h2',
+        null,
+        body
+    );
 }
 
 export function edit(props) {

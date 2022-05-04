@@ -2,7 +2,9 @@ import React from 'react';
 
 export default {
     type: 'element-h1',
-    context: { view }
+    context: {
+        view,
+    }
 }
 
 export function view(props) {

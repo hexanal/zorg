@@ -1,5 +1,4 @@
 import sass from 'sass';
-import info from '../log/info.js';
 import { write } from '../files.js';
 
 export default function compileSass(options, site) {
@@ -15,6 +14,6 @@ export default function compileSass(options, site) {
 
   return write(dest, filename, compiledCSS.css)
     .then( () => {
-      info( `styles: bundled css (from sass) ~~ ${time}ms`, 'tasks/scss');
+      console.log( `styles: bundled css (from sass) ~~ ${time}ms`);
     })
 }

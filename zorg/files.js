@@ -1,6 +1,5 @@
 import fs from 'fs';
 import fse from 'fs-extra';
-import error from './log/error.js';
 
 export function parseJsonAtPath(path) {
   const file = fs.readFileSync(path, 'utf8');
@@ -10,12 +9,15 @@ export function parseJsonAtPath(path) {
   try {
     json = JSON.parse(contents);
   } catch(err) {
-    error(`
-error while parsing json file:
+    console.error(`
+
+**error while parsing json file:**
+
   -> '${item}'
   -> error message:
+
 `);
-    error(err);
+    console.error(err);
     console.trace();
     throw err;
   }
@@ -45,7 +47,7 @@ export const writeFile = function(filePath, contents) {
 export function copyFile(src, dest) {
   return fse.copy(src, dest)
     .catch(err => {
-      console.error( err );
+      console.error(err);
     });
 
 }

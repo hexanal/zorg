@@ -1,15 +1,15 @@
 import { createElement, useState, useEffect } from 'react';
-import renderChunks from '../../../../zorg/chunky/renderChunk.js';
+import { renderChunkView, renderChunkEdit } from '../../kuuma.chunky.js';
 
 export default {
     type: 'admin-pages-list',
     context: { view }
-}
+};
 
 export function view(props) {
     const { body = null } = props || {};
     const [pages, setPages] = useState([]);
-    
+
     useEffect(() => {
         fetch('/api/v1/get-chunks-of-type/template-page')
             .then(response => response.json())
@@ -17,7 +17,7 @@ export function view(props) {
                 setPages(data);
             })
             .catch(msg => {
-                console.log(msg);
+                console.error(msg);
             });
     }, []);
 
@@ -25,7 +25,7 @@ export function view(props) {
         'div',
         { className: 'admin-pages-view-template' },
         [
-            body ? renderChunks(body) : false,
+            body ? renderChunkView(body) : false,
             pages.length !== 0
                 ? pages.map(page => createElement(
                     'div',
@@ -47,9 +47,7 @@ export function edit(props) {
     //         .then(data => {
     //             setPages(data);
     //         })
-    //         .catch(msg => {
-    //             console.log(msg);
-    //         });
+    //         .catch(console.err);
     // }, []);
 
     return createElement(

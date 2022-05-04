@@ -1,10 +1,12 @@
-import createChunk from '../../../../zorg/chunky/client/createChunk.js';
 import { createElement } from 'react';
 
-export default createChunk('element-shortcut', {
-    view: Shortcut,
-    edit: ShortcutEdit
-});
+export default {
+    type: 'element-shortcut',
+    context: {
+        view: Shortcut,
+        edit: ShortcutEdit
+    }
+};
 
 export function Shortcut(props) {
     const {

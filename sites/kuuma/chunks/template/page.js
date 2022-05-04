@@ -1,11 +1,13 @@
 import { createElement } from 'react';
-import createChunk from '../../../../zorg/chunky/client/createChunk.js';
-import renderChunk from '../../../../zorg/chunky/renderChunk.js';
+import { renderChunkView, renderChunkEdit } from '../../kuuma.chunky.js';
 
-export default createChunk('template-page', {
-    view: Page,
-    edit: PageEditor
-});
+export default {
+    type: 'template-page',
+    context: {
+        view: Page,
+        edit: PageEditor
+    }
+};
 
 export function Page(props) {
     const { body = [] } = props || {};
@@ -14,7 +16,7 @@ export function Page(props) {
     return createElement(
         'div',
         { className: 'default-template' },
-        renderChunk(body)
+        renderChunkView(body)
     );
 }
 
@@ -31,5 +33,5 @@ export function PageEditor(props) {
         });
     }
 
-    return createElement('div', { className: 'editing-page-here' }, renderChunk(body, 'edit', { onChunkChange }));
+    return createElement('div', { className: 'editing-page-here' }, renderChunkEdit(body, { onChunkChange }));
 }

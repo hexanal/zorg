@@ -1,5 +1,5 @@
 import React from 'react';
-import renderChunk from '../../../../zorg/chunky/renderChunk.js';
+import { renderChunkView, renderChunkEdit } from '../../kuuma.chunky.js';
 
 export default {
     type: 'element-list',
@@ -16,7 +16,7 @@ export function view(props) {
         items.map(item => React.createElement(
             'li',
             { key: item.id },
-            renderChunk(item)
+            renderChunkView(item)
         )),
     );
 }

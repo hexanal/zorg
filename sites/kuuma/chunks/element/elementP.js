@@ -57,7 +57,11 @@ export function edit(props) {
 
     return React.createElement(
         'input',
-        { type: 'text', onChange, value: body },
+        {
+            type: 'text',
+            onChange,
+            value: body
+        },
         null
     );
 }

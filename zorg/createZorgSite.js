@@ -1,7 +1,5 @@
 import createTask from './createTask.js';
 import createServer from './createServer.js';
-import error from './log/error.js';
-import info from './log/info.js';
 import * as availableTasks from './tasks/index.js';
 
 /**
@@ -12,41 +10,45 @@ import * as availableTasks from './tasks/index.js';
  * @param {site object} site provide a Zorgian site configuration object
  * @returns a Promise
  */
-export default function zorg(site) {
+export default function createZorgSite(site) {
     const { 
         DEV_MODE = false,
         tasks = [],
     } = site || {};
     const mode = DEV_MODE ? 'watch' : 'run';
 
-    info(`
+// console.log(`
 
-# running zorg [mode: ${mode}]
+// # running zorg [mode: ${mode}]
 
-* website: '${site.name}'
-* title: '${site.title}'
-* description: '${site.description}'
-    
-`, 'zorg');
+// * website: '${site.name}'
+// * title: '${site.title}'
+// * description: '${site.description}'
+
+// `);
 
     const app = createServer(site);
 
     return Promise.all( tasks.map(options => {
         const { type = null } = options || {};
         if (!type) {
-            error(`zorg type not specified!`, 'zorg');
+            console.error(`zorg type not specified!`, 'zorg');
             return;
         }
-  
+
         const fn = availableTasks[type];
         if (!fn) {
-            error(`
+
+console.error(`
 
 ->  zorg function '${type}' does not exist!
-    check the website configuration in 'processors'!
-`, 'zorg');
+check the website configuration in 'processors'!
+
+`);
+
             return;
         }
+
         return createTask(type, fn)[mode](options, site, app);
     }));
-}
+};
