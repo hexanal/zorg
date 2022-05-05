@@ -1,10 +1,7 @@
 import React from 'react';
 
 export default {
-    type: 'element-h1',
-    context: {
-        view,
-    }
+    view,
 }
 
 export function view(props) {

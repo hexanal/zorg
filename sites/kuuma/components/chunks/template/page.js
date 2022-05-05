@@ -2,11 +2,8 @@ import { createElement } from 'react';
 import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
-    type: 'template-page',
-    context: {
-        view: Page,
-        edit: PageEditor
-    }
+    view: Page,
+    edit: PageEditor
 };
 
 export function Page(props) {

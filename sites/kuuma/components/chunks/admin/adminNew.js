@@ -9,10 +9,7 @@ export default {
 }
 */
 export default {
-    type: 'admin-new',
-    context: {
-        view: AdminNew,
-    }
+    view: AdminNew,
 };
 
 export function AdminNew(props) {

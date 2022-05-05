@@ -2,11 +2,10 @@ import React from 'react';
 import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
-    type: 'element-list',
-    context: { view }
+    view: List
 };
     
-export function view(props) {
+export function List(props) {
     const { items = [] } = props || {};
     if (items.length === 0) return false;
 

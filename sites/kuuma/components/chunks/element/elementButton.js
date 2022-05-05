@@ -1,11 +1,8 @@
 import { createElement } from 'react';
 
 export default {
-    type: 'element-button',
-    context: {
-        view: Button,
-        edit: ButtonEdit
-    }
+    view: Button,
+    edit: ButtonEdit
 }
 
 export function Button(props) {

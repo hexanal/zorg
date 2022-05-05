@@ -2,10 +2,7 @@ import { createElement, useState, useEffect } from 'react';
 import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
-    type: 'admin-edit',
-    context: {
-        view: AdminEdit,
-    }
+    view: AdminEdit,
 };
 
 export function AdminEdit(props) {

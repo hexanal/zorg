@@ -1,11 +1,10 @@
 import React from 'react';
 
 export default {
-    type: 'element-link',
-    context: { view }
+    view: Link
 }
 
-export function view(props) {
+export function Link(props) {
     const {
         href = null,
         label = 'Click',

@@ -2,11 +2,8 @@ import { createElement, useState, useEffect } from 'react';
 import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
-    type: 'admin-pages-list',
-    context: {
-        view: AdminPagesList,
-        edit: AdminPagesListEditor // @todo?
-    }
+    view: AdminPagesList,
+    edit: AdminPagesListEditor // @todo?
 };
 
 export function AdminPagesList(props) {

@@ -1,11 +1,8 @@
 import { createElement } from 'react';
 
 export default {
-    type: 'element-shortcut',
-    context: {
-        view: Shortcut,
-        edit: ShortcutEdit
-    }
+    view: Shortcut,
+    edit: ShortcutEdit
 };
 
 export function Shortcut(props) {

@@ -1,12 +1,10 @@
 import React from 'react';
 
 export default {
-    type: 'element-h2',
-    context: { view, edit }
+    view, edit
 }
 
 export function view(props) {
-
     const { body = null } = props || {};
     if (!body) return false;
 

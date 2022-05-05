@@ -1,13 +1,10 @@
 import { createElement } from 'react';
 
 export default {
-    type: 'element-symbol',
-    context: {
-        view
-    }
+    view: Symbol
 }
 
-export function view(props) {
+export function Symbol(props) {
     const { attr = null } = props || {};
     if (!attr) return false;
 

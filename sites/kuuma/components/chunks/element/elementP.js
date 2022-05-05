@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 
 export default {
-    type: 'element-p',
-    context: {
-        view: P,
-        edit: PEditor
-    }
+    view: P,
+    edit: PEditor
 };
 
 export function P(props) {

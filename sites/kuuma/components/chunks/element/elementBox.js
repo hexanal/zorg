@@ -2,11 +2,8 @@ import React from 'react';
 import { chunkToComponent } from '../../../kuuma.chunky.js';
 
 export default {
-    type: 'element-box',
-    context: {
-        view: Box,
-        edit: BoxEditor
-    }
+    view: Box,
+    edit: BoxEditor
 };
 
 export function Box(props) {

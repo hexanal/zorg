@@ -24,18 +24,15 @@ function output(chunk, props = {}, chunks) {
         console.error(`no chunk found of type: '${chunk.type}'`); // couldn't find an associated chunks
         return createElement( 'div', null, 'error!');
     }
-    if (!found.context) {
-        console.error(`component type '${chunk.type}' does not export a 'context' key!`); // chunk doesn't provide a `context` key
-        return createElement( 'div', null, 'error!');
-    }
 
     // @todo clean this up, make it easier to understand that whole context business
     const { context: propsContext = null } = chunk;
     const { context: contextOverride = null } = props;
     const context = propsContext || contextOverride || 'view';
-    const Component = found.context[context];
+    console.log({context,found});
+    const Component = found[context];
     if (!Component) {
-        return console.error(`no component found for type '${chunk.type}', in '${chunk.context}' context.`);
+        return console.error(`no component found for type '${chunk.type}', in '${context}' context.`);
     }
 
     if (!Component) {

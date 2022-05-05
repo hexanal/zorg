@@ -1,14 +1,13 @@
 import React from 'react';
 
-export function view(data, config) {
+export default {
+    view: Error500
+};
+
+export function Error500(data, config) {
     return React.createElement(
         'div',
         { className: 'error-500-template' },
         'Error 500'
     );
-}
-
-export default {
-    type: 'template-error500',
-    context: { view }
 }

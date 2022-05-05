@@ -13,8 +13,8 @@ export default function(options, site) {
       {
         name: '~',
         setup(build) {
-          console.log(build);
-          build.onResolve({ filter: /^\~$/ }, async () => {
+          build.onResolve({ filter: /^\zorg$/ }, async hey => {
+            console.log(hey);
             const result = await build.resolve('~', { resolveDir: '../' })
             if (result.errors.length > 0) {
               return { errors: result.errors }
