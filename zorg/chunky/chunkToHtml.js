@@ -1,6 +1,6 @@
 import * as ReactDOMServer from 'react-dom/server.js';
-import chunky from './chunky.js';
-import { write } from '../files.js';
+import createChunky from './createChunky.js';
+import { read, write } from '../files.js';
 
 // @todo error msg
 // @todo replace string, from template in site?
@@ -10,41 +10,23 @@ export default function chunkToHtml(chunk, options, site) {
     const {
         chunks = [],
         dest = './public',
+        shell = null // @todo (error if null)
     } = options || {};
     const {
         lang = site.lang || 'en',
-        title = site.title || '[missing `title` in site]',
-        description = site.description || '[missing `description` in site]',
+        title = '~~',
+        description = '~~',
     } = chunk || {};
-    const { chunkToComponent } = chunky(chunks);
+    const { chunkToComponent } = createChunky(chunks);
     const Root = chunkToComponent(chunk);
-    const markup = ReactDOMServer.renderToString(Root);
-    const html = `<!doctype html>
-<html lang="${lang}">
-<head>
-    <title>${title}</title>
-
-    <meta name="description" content="${description}">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="manifest" href="/assets/manifest.webmanifest">
-    <link rel="icon" href="/assets/images/favicon.png">
-    <link rel="stylesheet" href="/assets/kuuma.css">
-</head>
-<body>
-
-<div id="root">${markup}</div>
-
-<script type="text/javascript">
-const __CHUNK__ = ${JSON.stringify(chunk)};
-</script>
-<script src="/assets/kuuma.js" type="module"></script>
-</body>
-</html>
-`;
+    const componentsAsString = ReactDOMServer.renderToString(Root);
+    const html = read(shell)
+        // @todo obvious
+        .replace('~~lang', lang)
+        .replace('~~title', title)
+        .replace('~~description', description)
+        .replace('~~html', componentsAsString)
+        .replace('~~chunk', JSON.stringify(chunk));
     // @todo grab that from `site`
     // const serverURL = host ? `http://${host}${port ? ':'+port:''}${chunk.url}` : null;
     const destination = `${dest}${chunk.url}`; // filesystem destination to write the HTML

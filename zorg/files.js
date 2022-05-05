@@ -1,13 +1,22 @@
 import fs from 'fs';
 import fse from 'fs-extra';
 
-export function parseJsonAtPath(path) {
+/**
+ * @todo a lot of error management here!
+ * tests? maybe...
+ */
+export function read(path) {
   const file = fs.readFileSync(path, 'utf8');
   const contents = file.toString();
+
+  return contents;
+}
+
+export function parseJsonAtPath(path) {
   let json = {}
 
   try {
-    json = JSON.parse(contents);
+    json = JSON.parse(read(path));
   } catch(err) {
     console.error(`
 

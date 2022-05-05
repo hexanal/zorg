@@ -1,7 +1,8 @@
-import chunky from '../../zorg/chunky/chunky.js';
+import createChunky from '../../zorg/chunky/createChunky.js';
 // inits Chunky with the library of chunks, so you can use `chunkToComponent(chunkData, extraProps);` in your React component to render sub-chunks
 
 import adminEdit from './components/chunks/admin/adminEdit.js';
+import adminNew from './components/chunks/admin/adminNew.js';
 import adminPagesList from './components/chunks/admin/adminPagesList.js';
 
 import elementBox from './components/chunks/element/elementBox.js';
@@ -17,11 +18,9 @@ import elementSymbol from './components/chunks/element/elementSymbol.js';
 import templateError500 from './components/chunks/template/error500.js';
 import templatePage from './components/chunks/template/page.js';
 
-export const {
-    chunkToComponent,
-    chunks
-} = chunky({
+export const {chunkToComponent, el, chunks} = createChunky({
     'admin-edit': adminEdit,
+    'admin-new': adminNew,
     'admin-pages-list': adminPagesList,
 
     'element-box': elementBox,

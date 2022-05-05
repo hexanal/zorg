@@ -2,6 +2,7 @@
 
 * edit chunk layout
 * merging chunks for rendering
+    -> chunks that "tack on" data
 * fine-tune API experience
 
 ## nexts

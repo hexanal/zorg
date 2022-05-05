@@ -1,5 +1,5 @@
 import glob from 'glob';
-import chunkToHtml from '../chunky/chunkToHtml.js';
+import chunkToHtml from './chunkToHtml.js';
 import { parseJsonAtPath } from '../files.js';
 
 export default function chunky(options, site) {

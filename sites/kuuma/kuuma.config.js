@@ -1,9 +1,10 @@
 import { chunks } from './kuuma.chunky.js';
-import chunky from '../../zorg/tasks/chunky.js';
-import serve from '../../zorg/tasks/serve.js';
+import chunky from '../../zorg/chunky/chunky.zorg.js';
 import copy from '../../zorg/tasks/copy.js';
-import scss from '../../zorg/tasks/scss.js';
-import esbuild from '../../zorg/tasks/esbuild.js';
+import serve from '../../zorg/tasks/serve.js';
+// @todo local/chunk tasks?!
+import esbuild from './tasks/esbuild.js';
+import scss from './tasks/scss.js';
 
 export default {
     id: 'kuuma', // must match the folder!
@@ -11,7 +12,7 @@ export default {
     // @todo this should be in data? yeah...
     title: 'Kuuma Kesä', // the default "title" for the website (i.e. tab time in browser, SEO title, etc.)
     description: "A webzine about art, science, life, music, friends, philosophy, gaming, etc. with an emphasis on the interactive and the multimedia.", // meta description
-    
+
     tasks: [
         {
             task: chunky,
@@ -19,6 +20,8 @@ export default {
             watch: ['./sites/kuuma/data/**/*.json', './sites/kuuma/components/chunks/**/*.js'],
             src: './sites/kuuma/data/**/*.json',
             dest: './public',
+            shell: './sites/kuuma/kuuma.html'
+            // @todo token replace here
         },
         {
             task: serve,

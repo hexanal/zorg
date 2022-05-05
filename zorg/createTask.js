@@ -27,6 +27,7 @@ export default function createTask(callback) {
       .on('ready', () => console.log(`watching glob: '${glob}'`))
       .on('change', path => {
         console.log(`'${path}' changed`);
+        // @todo try to merge path into the options to get `path` as `src`
         callback(options, site);
       });
 

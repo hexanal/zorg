@@ -22,6 +22,7 @@ export default function zorg(site) {
 
 // `);
 
+// @todo what do we do with this promise?!
     return Promise.all( tasks.map(({task, ...options}) => {
         if (typeof task !== 'function') {
             return console.error(`zorg task is not a function`);
