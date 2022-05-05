@@ -3,13 +3,12 @@ import express from 'express';
 import fs from 'fs';
 import lusca from 'lusca';
 // import morgan from 'morgan';
-import * as endpoints from '../endpoints/index.js';
 
 const { argv = null } = process || {};
 
 export default function serve(options, site) {
   const {
-    name = '[a website has no name...]',
+    name = '(no name provided)',
   } = site || {};
   const {
     baseUrl = '/',
@@ -17,6 +16,7 @@ export default function serve(options, site) {
     env = 'dev',
     host = 'localhost',
     port = 8080,
+    endpoints = [] // provide custom API endpoints @todo 
   } = options || {};
   const app = express();
 

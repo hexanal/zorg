@@ -16,7 +16,8 @@ export function Button(props) {
         'a',
         {
             className: 'button',
-            href
+            href,
+            target: '_blank'
         },
         label
     );

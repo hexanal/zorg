@@ -1,38 +1,31 @@
 {
-    "name": "alpha-kuuma",
+    "name": "alpha-sicko",
     "version": "0.0.1-alpha",
     "description": "the experimental webzine",
     "author": "Fred Mercy<hello@fredmercy.ca>",
     "type": "module",
     "scripts": {
-        "start": "node main.js",
-        "silent": "node main.js --silent",
-        "errors": "node main.js --error",
-        "debug": "node main.js --error --debug"
+        "start": "node ./sites/kuuma/kuuma.start.js",
+        "silent": "node ./sites/kuuma/kuuma.start.js --silent",
+        "errors": "node ./sites/kuuma/kuuma.start.js --error",
+        "debug": "node ./sites/kuuma/kuuma.start.js --error --debug"
     },
     "dependencies": {
-        "zorg": "./zorg/zorg.js",
-        "@babel/preset-env": "^7.16.11",
-        "@babel/preset-react": "^7.16.7",
-        "@babel/register": "^7.17.7",
         "chokidar": "^3.4.3",
+        "chunky": "file:chunky",
         "compression": "^1.7.4",
-        "dotenv": "^8.2.0",
         "errorhandler": "^1.5.1",
         "esbuild": "^0.14.38",
         "express": "^4.17.1",
         "fs-extra": "^9.0.1",
         "glob": "^7.1.6",
-        "handlebars": "^4.7.7",
-        "js-yaml": "^4.0.0",
-        "lodash.groupby": "^4.6.0",
-        "lodash.orderby": "^4.6.0",
         "lusca": "^1.6.1",
         "marked": "4.0.14",
         "morgan": "^1.10.0",
         "react": "^17.0.0",
         "react-dom": "^17.0.0",
         "sanitize-html": "2.3.2",
-        "sass": "1.30.0"
+        "sass": "1.30.0",
+        "zorg": "file:zorg"
     }
 }

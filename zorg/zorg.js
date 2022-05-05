@@ -1,33 +1,46 @@
-import createTask from './createTask.js';
+import chokidar from 'chokidar';
+
+const MODE = 'watch';
+
+export default function zorg(tasks) {
+    return tasks.map(options => tasker(options)[MODE](options) );
+}
 
 /**
- * when given a configuration for a website:
- * - runs a series of processors (specified by the config)
- * - watches for changes in files when website config provides the key: `DEV_MODE: true`
+ * @todo
  * 
- * @param {site object} site provide a Zorgian site configuration object
- * @returns a Promise
+ * @param {string} type the type of task
+ * @param {function} fn a function to run for this task
+ * @returns 
  */
-export default function zorg(site) {
-    const { ZORG_MODE = false, tasks = [], } = site || {};
-    const mode = ZORG_MODE ? 'watch' : 'run';
+export function tasker(options) {
+    const { fn = null } = options || {};
 
-// console.log(`
+    if (typeof fn !== 'function') {
+        return console.error(`zorg module's 'fn' is not a function`);
+    }
 
-// # running zorg [mode: ${mode}]
+    const run = options => {
+        return fn(options);
+    }
 
-// * website: '${site.name}'
-// * title: '${site.title}'
-// * description: '${site.description}'
+    const watch = options => {
+        const { watch: glob = [] } = options || {};
 
-// `);
+        fn(options); // @note call once to start with :)
 
-// @todo what do we do with this promise?!
-    return Promise.all( tasks.map(({task, ...options}) => {
-        if (typeof task !== 'function') {
-            return console.error(`zorg task is not a function`);
-        }
+        return chokidar
+            .watch(glob, {
+                ignored: /(^|[\/\\])\../, // ignore dotfiles
+                persistent: true
+            })
+            .on('ready', () => console.log(`watching glob: '${glob}'`))
+            .on('change', path => {
+                console.log(`'${path}' changed`);
+                // @todo try to merge path into the options to get `path` as `src` to only rebuild the one file?
+                return fn(options);
+            });
+    }
 
-        return createTask(task)[mode](options, site);
-    }));
-};
+    return { run, watch };
+}

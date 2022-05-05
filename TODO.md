@@ -1,9 +1,12 @@
 ## ongoing
 
-* edit chunk layout
+* "reference" type chunk
 * merging chunks for rendering
     -> chunks that "tack on" data
-* fine-tune API experience
+    -> header data in page template
+    -> `wrap` chunk
+
+* edit chunk layout
 
 ## nexts
 

@@ -1,3 +1,6 @@
+import chunky from 'chunky';
+
+// import all the chunks
 import adminEdit from './components/chunks/admin/adminEdit.js';
 import adminNew from './components/chunks/admin/adminNew.js';
 import adminPagesList from './components/chunks/admin/adminPagesList.js';
@@ -15,10 +18,11 @@ import elementSymbol from './components/chunks/element/elementSymbol.js';
 import templateError500 from './components/chunks/template/error500.js';
 import templatePage from './components/chunks/template/page.js';
 
-// inits Chunky with the library of chunks, so you can use `chunkToComponent(chunkData, extraProps);` in your React component to render sub-chunks
-import createChunky from '../../zorg/chunky/createChunky.js';
-
-export const {chunkToComponent, el, chunks} = createChunky({
+// @todo might not have to do any of that now that chunky is near the frontend?
+// inits Chunky with the library of chunks,
+// so you can use `chunkToComponent(chunkData, extraProps);`
+// in your React component to render any sub-chunks
+export const {chunkToComponent, chunks} = chunky({
     'admin-edit': adminEdit,
     'admin-new': adminNew,
     'admin-pages-list': adminPagesList,

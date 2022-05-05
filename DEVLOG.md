@@ -1,5 +1,19 @@
 # Developer Log
 
+## May 5, 2022
+
+* ok, to review:
+    - we've got:
+    - zorg that's basically `gulp` but homemade, and less powerful...
+    - it's a function that accepts one argument
+        -> the zorg configuration object
+    - zorg then runs tasks
+* also, we have `chunky`, which is the thing I'm really building... shit
+    - it's a framework for building a website and providing the UI to feed it content
+    - a CMS
+    - cool
+* reviewing todos now ;)
+
 ## April 27, 2022
 
 * taking shape!

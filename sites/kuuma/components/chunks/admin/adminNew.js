@@ -1,13 +1,6 @@
-import { createElement, useState, useEffect } from 'react';
-import { chunkToComponent } from '../../../kuuma.chunky.js';
+import { createElement } from 'react';
+// import { chunkToComponent } from '../../../kuuma.chunky.js';
 
-// @todo
-/*
-export default {
-    view: AdminNew,
-    edit: ...
-}
-*/
 export default {
     view: AdminNew,
 };

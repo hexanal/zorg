@@ -1,13 +1,11 @@
 import glob from 'glob';
-import { parseJsonAtPath } from '../files.js';
+import { parseJsonAtPath } from '../../../../zorg/files.js';
 
 export default function getChunksOfType(app, options) {
-    const { apiChunkSource = '' } = options || {};
-
     app.get('/api/v1/get-chunks-of-type/:type', function(req, res) {
         const { params = {} } = req || {};
         const { type = null } = params || {};
-        const all = glob.sync(apiChunkSource);
+        const all = glob.sync('./sites/kuuma/data/**/*.json'); // @todo?
         const chunks = all.map(parseJsonAtPath);
         const ofType = chunks.filter(chunkData => {
             const { type: chunkType = null } = chunkData || {};

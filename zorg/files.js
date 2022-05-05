@@ -61,7 +61,7 @@ export function copyFile(src, dest) {
 
 }
 
-export const write = function(destination, fileName, contents, verbose = false ) {
-  return createDir( destination )
-    .then(() => writeFile(`${destination}/${fileName}`, contents) );
+export const write = function(destination, fileName, contents) {
+  return createDir(destination)
+    .then(() => writeFile(`${destination}/${fileName}`, contents));
 }

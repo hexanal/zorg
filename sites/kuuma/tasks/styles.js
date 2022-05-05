@@ -1,5 +1,5 @@
 import sass from 'sass';
-import { write } from '../../../zorg/files.js';
+import { write } from 'zorg/files.js';
 
 export default function compileSass(options, site) {
   const { DEV_MODE = false } = site || {};
