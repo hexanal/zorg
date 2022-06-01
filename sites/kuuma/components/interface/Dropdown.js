@@ -1,8 +1,14 @@
 import React from 'react';
-import { Button } from '../../components/element/elementButton.js';
-import { Shortcut } from '../../components/element/elementShortcut.js';
+import { Button } from '../element/button.js';
+import { Shortcut } from '../element/shortcut.js';
+import { Symbol } from '../element/symbol.js';
 
-export default function Dropdown(props) {
+export default {
+    type: 'interface-dropdown',
+    view: Dropdown,
+}
+
+export function Dropdown(props) {
     const {
         symbol = null,
         label = null,
@@ -14,8 +20,12 @@ export default function Dropdown(props) {
         'div',
         { className: 'dropdown' },
         [
-            symbol && React.createElement(Symbol, { name: symbol }, null),
-            React.createElement(Button, {...link}, null),
+            symbol && (
+                React.createElement(Button, {
+                    href: '#',
+                    label: React.createElement(Symbol, { name: symbol }, null),
+                }, null)
+            ),
             label && React.createElement('span', { className: 'dropdown__label', }, label),
             shortcut && React.createElement(Shortcut, { ...shortcut }, label),
         ]

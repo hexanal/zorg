@@ -5,27 +5,13 @@
     "author": "Fred Mercy<hello@fredmercy.ca>",
     "type": "module",
     "scripts": {
-        "start": "node ./sites/kuuma/kuuma.start.js",
-        "silent": "node ./sites/kuuma/kuuma.start.js --silent",
-        "errors": "node ./sites/kuuma/kuuma.start.js --error",
-        "debug": "node ./sites/kuuma/kuuma.start.js --error --debug"
+        "start": "node ./sites/kuuma/kuumaBuild.js"
     },
     "dependencies": {
-        "chokidar": "^3.4.3",
-        "chunky": "file:chunky",
-        "compression": "^1.7.4",
-        "errorhandler": "^1.5.1",
-        "esbuild": "^0.14.38",
-        "express": "^4.17.1",
-        "fs-extra": "^9.0.1",
-        "glob": "^7.1.6",
-        "lusca": "^1.6.1",
-        "marked": "4.0.14",
-        "morgan": "^1.10.0",
-        "react": "^17.0.0",
-        "react-dom": "^17.0.0",
-        "sanitize-html": "2.3.2",
-        "sass": "1.30.0",
-        "zorg": "file:zorg"
+        "chunky": "file:tools/chunky",
+        "react": "^18.0.0",
+        "react-dom": "^18.0.0",
+        "uuid": "^8.3.2",
+        "zorg": "file:tools/zorg"
     }
 }

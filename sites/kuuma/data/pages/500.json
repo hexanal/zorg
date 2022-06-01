@@ -1,8 +1,0 @@
-{
-    "type": "template-error500",
-    "lang": "en",
-    "title": "Error 500",
-    "description": "This page was not found. Sorry!",
-    "url": "/500",
-    "body": []
-}

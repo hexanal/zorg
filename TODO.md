@@ -1,6 +1,5 @@
 ## ongoing
 
-* "reference" type chunk
 * merging chunks for rendering
     -> chunks that "tack on" data
     -> header data in page template

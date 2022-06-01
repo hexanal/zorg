@@ -1,0 +1,35 @@
+.button {
+  display: inline-block;
+  padding: 0.25rem 1rem;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  font-style: normal;
+  font-family: var(--font);
+  text-decoration: none;
+  color: var(--color-bg);
+  background-color: var(--color-subdued);
+  border-radius: 0.75rem;
+
+  @include hover-focus {
+    color: var(--color-bg);
+    text-decoration: none;
+    background-color: var(--color-secondary);
+  }
+
+  &:active {
+    border-color: var(--color-active);
+    background-color: var(--color-active);
+  }
+}
+
+.button--secondary,
+.button--light {
+  color: var(--color-primary);
+  font-style: italic;
+  background-color: rgba(0,0,0,0.01);
+
+  @include hover-focus {
+    color: var(--color-bg);
+  }
+}

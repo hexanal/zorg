@@ -5,17 +5,15 @@ export default function createGetChunkById(app, options) {
   const { extras = null } = options || {};
   const { chunksSrc = null } = extras || {};
 
-  app.get('/api/v1/get-chunk-by-id/:id', function(req, res) {
-    const { params } = req || {};
-    const { id = 'missing id' } = params || {};
+  app.get('/api/v1/get-home', function(req, res) {
     const all = glob.sync(chunksSrc);
     const allChunks = all.map(parseJsonAtPath);
     const found = allChunks
       .find(chunkData => {
-        const { id: chunkId = null } = chunkData || {};
-        if (!chunkId) return false;
+        const { url: chunkUrl = null } = chunkData || {};
+        if (!chunkUrl) return false;
   
-        return chunkId === id;
+        return chunkUrl === '/';
       });
   
     return res.json(found);

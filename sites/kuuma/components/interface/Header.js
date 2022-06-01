@@ -1,7 +1,12 @@
 import React from 'react';
-import Dropdown from './interfaceDropdown.js';
+import { Dropdown } from './dropdown.js';
 
-export default function Header(props) {
+export default {
+    type: 'interface-header',
+    view: Header
+}
+
+function Header(props) {
     const {
         logo = null,
         login = null
@@ -32,4 +37,3 @@ export default function Header(props) {
         ]
     );
 }
-

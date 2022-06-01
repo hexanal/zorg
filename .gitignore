@@ -17,6 +17,7 @@ _generated
 /chunks
 comments.db
 # generated exports
+/json
 /exports
 
 # backup doodads
